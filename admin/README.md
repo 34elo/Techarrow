@@ -25,10 +25,13 @@
 
 | Область        | Технологии |
 |----------------|------------|
-| UI и маршруты  | Next.js (App Router), React |
+| UI и маршруты  | Next.js 16 (App Router), React 19 |
 | Данные и кэш   | TanStack Query, Zustand |
 | Сеть           | Axios, собственный HTTP-клиент с refresh-токенами |
-| Стили          | Tailwind CSS, компоненты на базе Radix |
+| Стили          | Tailwind CSS 4, компоненты на базе Radix (shadcn/ui) |
+| Формы          | react-hook-form + zod (диалог отказа в публикации) |
+| Уведомления    | sonner (toast) |
+| Локализация    | собственный i18n-провайдер (ru/en/fr/hi) |
 | Язык           | TypeScript |
 
 Подробнее о слоях и вызовах API: [docs/architecture.md](./docs/architecture.md), [docs/environment-and-api.md](./docs/environment-and-api.md).
@@ -160,9 +163,13 @@ NEXT_PUBLIC_API_URL=http://localhost:8000 docker compose -f docker-compose.dev.y
 
 ## Скрипты
 
-| Команда       | Назначение              |
-|---------------|-------------------------|
-| `pnpm dev`    | Режим разработки        |
-| `pnpm build`  | Продакшен-сборка        |
-| `pnpm start`  | Запуск собранного приложения |
-| `pnpm lint`   | Проверка ESLint         |
+| Команда                | Назначение                              |
+|------------------------|-----------------------------------------|
+| `pnpm dev`             | Режим разработки                        |
+| `pnpm build`           | Продакшен-сборка                        |
+| `pnpm start`           | Запуск собранного приложения            |
+| `pnpm lint`            | Проверка ESLint                         |
+| `pnpm format`          | Авто-форматирование Prettier            |
+| `pnpm format:check`    | Проверка форматирования без записи      |
+
+Конфигурация Prettier — в `.prettierrc.json` корня пакета. Стиль одинаковый с web-панелью (см. [«Кодовый стиль» в корневом README](../README.md#кодовый-стиль)).

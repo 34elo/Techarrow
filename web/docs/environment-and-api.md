@@ -65,6 +65,18 @@
 | POST | `/api/quest-runs/active/abandon` | Прервать прохождение |
 | GET | `/api/quest-runs/history` | История пройденных квестов |
 
+### Командное прохождение
+
+`src/features/team-quest-run/api/team-quest-run-service.ts`
+
+| Метод | Путь | Назначение |
+|-------|------|------------|
+| GET | `/api/team-quest-runs/active` | Активный командный ран (или `null`/404). Поллится: 1 с в `waiting_for_team`/`starting`, 2 с в `in_progress`. |
+| PATCH | `/api/team-quest-runs` | Подтвердить или отменить готовность к квесту: `{quest_id, is_ready}`. Первый `is_ready: true` создаёт `TeamQuestRunModel` со статусом `waiting_for_team`. Когда готовы все участники команды (≥2) — статус переходит в `starting`, через ~5с — в `in_progress`. |
+| POST | `/api/team-quest-runs/active/checkpoints/{checkpointId}/answer` | Ответ на чекпоинт. Любой участник может ответить на любой чекпоинт; ответ сравнивается без регистра/пунктуации. В `progress.checkpoints[].completed_by_user_id` фиксируется автор. |
+
+Подробный flow и важные нюансы (5-секундная задержка через `starts_at`, кик/выход из команды во время рана, очки) — см. [`team-quests.md`](../../team-quests.md) в корне репозитория.
+
 ### Команды
 
 `src/features/teams/api/teams-service.ts`

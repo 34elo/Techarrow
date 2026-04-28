@@ -43,6 +43,17 @@
 3. `AuthGuard` (см. `features/auth/ui/auth-guard.tsx`) при гидратации сверяет роль и при несовпадении вызывает `clearAuth()` и `router.replace("/access_denied")`.
 4. Хранилища намеренно разнесены с админкой: ключи `localStorage` — `"auth"` для persist-стора и `"web_refresh_token"` для refresh-токена. У админ-панели — `"admin-auth"` и `"admin_refresh_token"`.
 
+## Командные квесты
+
+`features/team-quest-run/` инкапсулирует флоу командного прохождения. Полный backend-контракт описан в [`team-quests.md`](../../team-quests.md).
+
+- **Состояния рана** (`entities/team-quest-run/model/types.ts`): `waiting_for_team → starting → in_progress → completed`. Бэк создаёт `TeamQuestRunModel` сам — при первом `PATCH /api/team-quest-runs {is_ready: true}`. Отдельного `POST /api/team-quest-runs` нет.
+- **Поллинг** (`model/use-team-quest-run.ts`): 1 с в `waiting`/`starting`, 2 с в `in_progress`, 0 в `completed`. `refetchOnWindowFocus: true`. Через `useActiveTeamQuestRun({ poll: true })` поллит только активная страница; баннер живёт на cache-hit.
+- **Автоматическая «доступка» старта**: `widgets/team-quest-run-page/ui/team-countdown-card.tsx` по достижении 0 секунд один раз вызывает `queryClient.invalidateQueries(queryKeys.teamQuestRun.active())` — не ждём следующего тика.
+- **Тосты** (`model/use-team-run-notifications.ts`): сравнивает прошлый и новый снапшот рана, тостит при смене статуса (`waiting → starting → in_progress → completed`) и при решении чекпоинта тиммейтом (`completed_by_user_id !== userId`).
+- **UI**: `TeamReadinessCard` (галочки готовности), `TeamCountdownCard` (5-сек обратный отсчёт), `TeamCheckpointItem` (любой участник может ответить на любой чекпоинт), `TeamRunMapCard`, `TeamRunSummaryCard`.
+- **Запуск из карточки квеста**: `widgets/quest-detail-page/ui/quest-detail-actions.tsx` — режим «Командой» в `StartQuestDialog` зовёт `useSetTeamReadiness` и редиректит на `/quests/{id}/team-run`. Баннер `ActiveTeamQuestBanner` на ленте и на странице квеста виден всем участникам команды.
+
 ## Карты и геолокация
 
 - Базовый компонент — `shared/ui/map/maplibre-map.tsx`. Используется растровый стиль OpenStreetMap (3 SD-CDN endpoints). Поддерживает три варианта маркеров (`default`/`active`/`passed`), label с номером чекпоинта, popup, режим picker для перетаскивания одного маркера, отображение пользовательской позиции с кругом точности.
