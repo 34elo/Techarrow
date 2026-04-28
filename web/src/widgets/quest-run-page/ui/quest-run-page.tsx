@@ -14,6 +14,7 @@ import { Skeleton } from "@/shared/ui/skeleton";
 import { RunCheckpointCard } from "./run-checkpoint-card";
 import { RunMapCard } from "./run-map-card";
 import { RunSummaryCard } from "./run-summary-card";
+import { RunTimer } from "./run-timer";
 
 export function QuestRunPage() {
   const { t } = useTranslations();
@@ -123,7 +124,10 @@ export function QuestRunPage() {
       </header>
 
       <div className="space-y-2">
-        <h1 className="text-2xl font-semibold tracking-tight">{quest.title}</h1>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h1 className="text-2xl font-semibold tracking-tight">{quest.title}</h1>
+          <RunTimer startedAt={run.started_at} />
+        </div>
         <div className="flex items-center gap-3">
           <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
             <div

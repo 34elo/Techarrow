@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "City Quest",
+  title: "Квесты",
   description: "Городские квесты с геолокацией",
 };
 

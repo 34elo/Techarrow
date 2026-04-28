@@ -68,4 +68,11 @@ export const questsService = {
   async deleteAsModerator(id: number | string): Promise<void> {
     await httpClient.delete(`/api/moderation/quests/${id}`)
   },
+
+  async exportPdf(id: number | string): Promise<Blob> {
+    const { data } = await httpClient.get<Blob>(`/api/quests/${id}/export`, {
+      responseType: "blob",
+    })
+    return data
+  },
 }

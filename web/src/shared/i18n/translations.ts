@@ -158,6 +158,7 @@ export const translations = {
       viewHistory: "Открыть историю",
       noActive: "У вас нет активного прохождения этого квеста.",
       openQuest: "Открыть квест",
+      elapsedLabel: "В пути",
     },
     favorites: {
       title: "Избранное",
@@ -392,7 +393,7 @@ export const translations = {
       logoutPending: "Выходим...",
     },
     auth: {
-      loginTitle: "Вход в City Quest",
+      loginTitle: "Вход в Квесты",
       loginDescription: "Введите email и пароль, чтобы продолжить",
       registerTitle: "Регистрация",
       registerDescription: "Создайте аккаунт, чтобы начать проходить квесты",
@@ -574,6 +575,7 @@ export const translations = {
       viewHistory: "View history",
       noActive: "You have no active run for this quest.",
       openQuest: "Open quest",
+      elapsedLabel: "Elapsed",
     },
     myQuests: {
       title: "My quests",
@@ -802,7 +804,7 @@ export const translations = {
       logoutPending: "Signing out...",
     },
     auth: {
-      loginTitle: "Sign in to City Quest",
+      loginTitle: "Sign in to Quests",
       loginDescription: "Enter your email and password to continue",
       registerTitle: "Sign up",
       registerDescription:
@@ -985,6 +987,7 @@ export const translations = {
       viewHistory: "Voir l'historique",
       noActive: "Vous n'avez pas de quête active pour celle-ci.",
       openQuest: "Ouvrir la quête",
+      elapsedLabel: "Écoulé",
     },
     favorites: {
       title: "Favoris",
@@ -1215,7 +1218,7 @@ export const translations = {
       logoutPending: "Déconnexion...",
     },
     auth: {
-      loginTitle: "Se connecter à City Quest",
+      loginTitle: "Se connecter aux Quêtes",
       loginDescription: "Saisissez votre e-mail et mot de passe pour continuer",
       registerTitle: "Inscription",
       registerDescription: "Créez un compte pour jouer aux quêtes",
@@ -1397,6 +1400,7 @@ export const translations = {
       viewHistory: "इतिहास देखें",
       noActive: "इस क्वेस्ट के लिए सक्रिय रन नहीं है।",
       openQuest: "क्वेस्ट खोलें",
+      elapsedLabel: "बीता समय",
     },
     favorites: {
       title: "पसंदीदा",
@@ -1625,7 +1629,7 @@ export const translations = {
       logoutPending: "साइन आउट हो रहा है...",
     },
     auth: {
-      loginTitle: "City Quest में साइन इन",
+      loginTitle: "क्वेस्ट में साइन इन",
       loginDescription: "जारी रखने के लिए ईमेल और पासवर्ड दर्ज करें",
       registerTitle: "साइन अप",
       registerDescription: "क्वेस्ट खेलने के लिए खाता बनाएँ",

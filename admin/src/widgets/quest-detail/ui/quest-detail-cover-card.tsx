@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { useState } from "react"
 
 import { getQuestCoverImageUrl, type QuestDetail } from "@/entities/quest/model/quest-detail"
@@ -32,13 +31,11 @@ export function QuestDetailCoverCard({ quest, className }: QuestDetailCoverCardP
       <CardContent className="flex min-h-0 min-w-0 flex-1 flex-col gap-3 px-4 pt-4">
         <div className="relative isolate aspect-video w-full max-w-full overflow-hidden rounded-xl bg-muted ring-1 ring-border/50">
           {!showFallback ? (
-            <Image
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
               src={src}
               alt={alt}
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, min(420px, 33vw)"
-              priority
+              className="absolute inset-0 h-full w-full object-cover object-center"
               onError={() => setShowFallback(true)}
             />
           ) : (
