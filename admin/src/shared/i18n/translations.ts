@@ -44,21 +44,21 @@ export const translations = {
       complaints: "Жалобы",
     },
     sections: {
-      questsTitle: "Квесты на модерации",
+      questsTitle: "Все квесты",
       questsDescription:
-        "Проверьте и одобрите новые квесты или отклоните их с указанием причин",
-      reportsTitle: "Все квесты",
+        "Все квесты на платформе и их текущее состояние",
+      reportsTitle: "Жалобы пользователей",
       reportsDescription:
-        "Здесь отображаются все квесты и их текущее состояние",
-      requestsTitle: "Жалобы пользователей",
-      requestsDescription:
         "Рассмотрите жалобы, проверьте контент и примите решение по каждой заявке",
+      requestsTitle: "Квесты на модерации",
+      requestsDescription:
+        "Проверьте и одобрите новые квесты или отклоните их с указанием причин",
     },
     quests: {
       searchPlaceholder: "Поиск по названию, автору, городу или району",
       detailTitle: "Квест",
       backToList: "Назад к списку",
-      empty: "Нет квестов на модерации",
+      empty: "Квестов пока нет",
       exportPdf: "Экспорт PDF",
       exportPending: "Экспортируем...",
       exportFailed: "Не удалось экспортировать квест",
@@ -102,12 +102,12 @@ export const translations = {
       unknownStatus: "Неизвестный статус: {status}",
     },
     reports: {
-      searchPlaceholder: "Поиск по названию, автору, городу или району",
-      empty: "Квестов пока нет",
-    },
-    requests: {
       searchPlaceholder: "Поиск по жалобам",
       empty: "Открытых жалоб нет",
+    },
+    requests: {
+      searchPlaceholder: "Поиск по названию, автору, городу или району",
+      empty: "Нет квестов на модерации",
     },
     reportCard: {
       from: "от",
@@ -192,20 +192,20 @@ export const translations = {
       complaints: "Complaints",
     },
     sections: {
-      questsTitle: "Quests Under Review",
-      questsDescription:
-        "Review and approve new quests or reject them with a reason",
-      reportsTitle: "All Quests",
-      reportsDescription: "All quests and their current state are shown here",
-      requestsTitle: "User Complaints",
-      requestsDescription:
+      questsTitle: "All Quests",
+      questsDescription: "All quests on the platform and their current state",
+      reportsTitle: "User Complaints",
+      reportsDescription:
         "Review complaints, validate content, and make a decision for each case",
+      requestsTitle: "Quests Under Review",
+      requestsDescription:
+        "Review and approve new quests or reject them with a reason",
     },
     quests: {
       searchPlaceholder: "Search by title, author, city, or district",
       detailTitle: "Quest",
       backToList: "Back to list",
-      empty: "No quests under review",
+      empty: "No quests yet",
       exportPdf: "Export PDF",
       exportPending: "Exporting...",
       exportFailed: "Failed to export quest",
@@ -249,12 +249,12 @@ export const translations = {
       unknownStatus: "Unknown status: {status}",
     },
     reports: {
-      searchPlaceholder: "Search by title, author, city, or district",
-      empty: "No quests yet",
-    },
-    requests: {
       searchPlaceholder: "Search complaints",
       empty: "No open complaints",
+    },
+    requests: {
+      searchPlaceholder: "Search by title, author, city, or district",
+      empty: "No quests under review",
     },
     reportCard: {
       from: "from",
@@ -340,21 +340,21 @@ export const translations = {
       complaints: "Plaintes",
     },
     sections: {
-      questsTitle: "Quêtes en modération",
+      questsTitle: "Toutes les quêtes",
       questsDescription:
-        "Examinez et approuvez les nouvelles quêtes ou rejetez-les en précisant la raison",
-      reportsTitle: "Toutes les quêtes",
+        "Toutes les quêtes de la plateforme et leur état actuel",
+      reportsTitle: "Plaintes des utilisateurs",
       reportsDescription:
-        "Toutes les quêtes et leur état actuel s'affichent ici",
-      requestsTitle: "Plaintes des utilisateurs",
-      requestsDescription:
         "Examinez les plaintes, vérifiez le contenu et prenez une décision pour chaque cas",
+      requestsTitle: "Quêtes en modération",
+      requestsDescription:
+        "Examinez et approuvez les nouvelles quêtes ou rejetez-les en précisant la raison",
     },
     quests: {
       searchPlaceholder: "Recherche par titre, auteur, ville ou quartier",
       detailTitle: "Quête",
       backToList: "Retour à la liste",
-      empty: "Aucune quête en modération",
+      empty: "Aucune quête pour le moment",
       exportPdf: "Exporter en PDF",
       exportPending: "Exportation...",
       exportFailed: "Échec de l'exportation",
@@ -398,12 +398,12 @@ export const translations = {
       unknownStatus: "Statut inconnu : {status}",
     },
     reports: {
-      searchPlaceholder: "Recherche par titre, auteur, ville ou quartier",
-      empty: "Aucune quête pour le moment",
-    },
-    requests: {
       searchPlaceholder: "Rechercher des plaintes",
       empty: "Aucune plainte ouverte",
+    },
+    requests: {
+      searchPlaceholder: "Recherche par titre, auteur, ville ou quartier",
+      empty: "Aucune quête en modération",
     },
     reportCard: {
       from: "de",
@@ -489,20 +489,20 @@ export const translations = {
       complaints: "शिकायतें",
     },
     sections: {
-      questsTitle: "समीक्षा में क्वेस्ट",
-      questsDescription:
-        "नए क्वेस्ट की समीक्षा करें और स्वीकृत करें या कारण के साथ अस्वीकृत करें",
-      reportsTitle: "सभी क्वेस्ट",
-      reportsDescription: "यहाँ सभी क्वेस्ट और उनकी वर्तमान स्थिति दिखाई जाती है",
-      requestsTitle: "उपयोगकर्ता शिकायतें",
-      requestsDescription:
+      questsTitle: "सभी क्वेस्ट",
+      questsDescription: "प्लेटफ़ॉर्म पर सभी क्वेस्ट और उनकी वर्तमान स्थिति",
+      reportsTitle: "उपयोगकर्ता शिकायतें",
+      reportsDescription:
         "शिकायतों की समीक्षा करें, सामग्री की जाँच करें और प्रत्येक मामले पर निर्णय लें",
+      requestsTitle: "समीक्षा में क्वेस्ट",
+      requestsDescription:
+        "नए क्वेस्ट की समीक्षा करें और स्वीकृत करें या कारण के साथ अस्वीकृत करें",
     },
     quests: {
       searchPlaceholder: "शीर्षक, लेखक, शहर या क्षेत्र से खोजें",
       detailTitle: "क्वेस्ट",
       backToList: "सूची पर वापस",
-      empty: "समीक्षा में कोई क्वेस्ट नहीं",
+      empty: "अभी कोई क्वेस्ट नहीं",
       exportPdf: "PDF निर्यात",
       exportPending: "निर्यात हो रहा है...",
       exportFailed: "क्वेस्ट निर्यात नहीं हुआ",
@@ -546,12 +546,12 @@ export const translations = {
       unknownStatus: "अज्ञात स्थिति: {status}",
     },
     reports: {
-      searchPlaceholder: "शीर्षक, लेखक, शहर या क्षेत्र से खोजें",
-      empty: "अभी कोई क्वेस्ट नहीं",
-    },
-    requests: {
       searchPlaceholder: "शिकायतें खोजें",
       empty: "कोई खुली शिकायत नहीं",
+    },
+    requests: {
+      searchPlaceholder: "शीर्षक, लेखक, शहर या क्षेत्र से खोजें",
+      empty: "समीक्षा में कोई क्वेस्ट नहीं",
     },
     reportCard: {
       from: "से",

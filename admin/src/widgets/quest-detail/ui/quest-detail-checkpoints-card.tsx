@@ -109,7 +109,7 @@ export function QuestDetailCheckpointsCard({
                       </span>
                       <div className="min-w-0 flex-1 space-y-2">
                         <div className="flex items-start justify-between gap-2">
-                          <p className="text-sm font-semibold leading-snug">
+                          <p className="min-w-0 break-words text-sm font-semibold leading-snug">
                             {point.title}
                           </p>
                           <span className="inline-flex shrink-0 items-center gap-1 rounded-md border border-border/60 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground transition-colors group-hover:border-primary/40 group-hover:text-foreground">

@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 
-import { Icon } from "lucide-react"
 import { cn } from "@/shared/lib/classnames"
 
 type NavTabProps = {
