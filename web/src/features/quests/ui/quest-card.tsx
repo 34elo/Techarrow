@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Clock3, MapPin } from "lucide-react";
+import { CheckCircle2, Clock3, MapPin } from "lucide-react";
 
 import {
   getDifficultyLabel,
@@ -13,6 +13,7 @@ import {
   type QuestStatus,
 } from "@/entities/quest";
 import { FavoriteButton } from "@/features/quest-favorites";
+import { useCompletedQuestIds } from "@/features/quest-run";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { cn } from "@/shared/lib/classnames";
 import { Badge } from "@/shared/ui/badge";
@@ -39,6 +40,8 @@ export function QuestCard({ quest, className, showStatus }: QuestCardProps) {
   const { city, district } = parseLocation(quest.location);
   const cover = getQuestCoverImageUrl(quest);
   const statusVariant = STATUS_VARIANT[quest.status] ?? "outline";
+  const completedIds = useCompletedQuestIds();
+  const isPassed = completedIds.has(quest.id);
 
   return (
     <Link
@@ -61,11 +64,19 @@ export function QuestCard({ quest, className, showStatus }: QuestCardProps) {
           <div className="absolute right-2 top-2">
             <FavoriteButton questId={quest.id} className="bg-card/80" />
           </div>
-          {showStatus ? (
-            <div className="absolute left-2 top-2">
-              <Badge variant={statusVariant} className="bg-card/90">
-                {getQuestStatusLabel(t, quest.status)}
-              </Badge>
+          {showStatus || isPassed ? (
+            <div className="absolute left-2 top-2 flex flex-col items-start gap-1">
+              {showStatus ? (
+                <Badge variant={statusVariant} className="bg-card/90">
+                  {getQuestStatusLabel(t, quest.status)}
+                </Badge>
+              ) : null}
+              {isPassed ? (
+                <Badge variant="success" className="bg-card/90">
+                  <CheckCircle2 className="size-3" aria-hidden />
+                  {t("quests.statusCompleted")}
+                </Badge>
+              ) : null}
             </div>
           ) : null}
         </div>

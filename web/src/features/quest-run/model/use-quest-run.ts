@@ -80,3 +80,15 @@ export function useQuestRunHistory() {
     enabled: isAuthenticated,
   });
 }
+
+export function useCompletedQuestIds(): Set<number> {
+  const history = useQuestRunHistory();
+  const items = history.data ?? [];
+  const ids = new Set<number>();
+  for (const item of items) {
+    if (item.status === "completed") {
+      ids.add(item.quest_id);
+    }
+  }
+  return ids;
+}

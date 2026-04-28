@@ -9,6 +9,7 @@ export {
   useSubmitAnswer,
   useAbandonQuestRun,
   useQuestRunHistory,
+  useCompletedQuestIds,
 } from "./model/use-quest-run";
 export { runModeStorage } from "./lib/run-mode-storage";
 export type { QuestMode } from "./lib/run-mode-storage";

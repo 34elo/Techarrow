@@ -2,12 +2,17 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
-import { ActiveQuestBanner, useActiveQuestRun } from "@/features/quest-run";
+import {
+  ActiveQuestBanner,
+  useActiveQuestRun,
+  useCompletedQuestIds,
+} from "@/features/quest-run";
 import { useQuestDetail } from "@/features/quests";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { useAuthStore } from "@/shared/store/auth-store";
+import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui/card";
 import { Skeleton } from "@/shared/ui/skeleton";
@@ -26,9 +31,11 @@ export function QuestDetailPage() {
 
   const questQuery = useQuestDetail(Number.isFinite(questId) ? questId : undefined);
   const { data: activeRun } = useActiveQuestRun();
+  const completedIds = useCompletedQuestIds();
 
   const quest = questQuery.data;
   const isOwn = quest?.creator.id === userId;
+  const isPassed = quest ? completedIds.has(quest.id) : false;
   const activeOnThisQuest =
     activeRun?.status === "in_progress" && activeRun.quest_id === questId;
 
@@ -59,9 +66,17 @@ export function QuestDetailPage() {
           <div className="flex flex-col gap-4">
             <QuestDetailCover quest={quest} />
             <div className="space-y-3">
-              <h1 className="text-balance text-3xl font-semibold tracking-tight">
-                {quest.title}
-              </h1>
+              <div className="flex flex-wrap items-start gap-3">
+                <h1 className="text-balance text-3xl font-semibold tracking-tight">
+                  {quest.title}
+                </h1>
+                {isPassed ? (
+                  <Badge variant="success" className="mt-1.5">
+                    <CheckCircle2 className="size-3.5" aria-hidden />
+                    {t("quests.statusCompleted")}
+                  </Badge>
+                ) : null}
+              </div>
               <QuestDetailMeta quest={quest} />
               <QuestDetailActions
                 questId={quest.id}
