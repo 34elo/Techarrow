@@ -8,6 +8,7 @@ export type LeaderboardEntry = {
 export type LeaderboardSelfPosition = {
   rank: number;
   score: number;
+  name: string;
   totalParticipants: number;
 };
 

@@ -49,6 +49,7 @@ function adaptSelf(
   return {
     rank: dto.place,
     score: dto.points,
+    name: dto.name,
     totalParticipants: total,
   };
 }

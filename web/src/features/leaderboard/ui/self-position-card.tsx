@@ -25,33 +25,32 @@ export function SelfPositionCard({ scope, self, team }: SelfPositionCardProps) {
     return null;
   }
 
-  const heading =
+  const caption =
     scope === "teams"
-      ? (team?.name ?? t("leaderboard.myTeamLabel"))
+      ? t("leaderboard.myTeamLabel")
       : t("leaderboard.myPlace");
+  const name = scope === "teams" ? (team?.name ?? self.name) : self.name;
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-primary/30 bg-primary/5 px-4 py-2.5 text-sm">
-      <div className="min-w-0 truncate">
-        <span className="text-xs uppercase tracking-wide text-muted-foreground">
-          {scope === "teams"
-            ? t("leaderboard.myTeamLabel")
-            : t("leaderboard.myPlace")}
-        </span>
-        <span className="ml-2 font-semibold">{heading}</span>
+    <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 rounded-2xl border border-primary/30 bg-primary/5 px-4 py-3 text-sm">
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-base font-semibold leading-tight">{name}</p>
+        <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+          {caption}
+        </p>
       </div>
-      <div className="flex items-center gap-4 tabular-nums">
-        <span>
-          <span className="text-xs text-muted-foreground">
-            {t("leaderboard.myPlace")}
-          </span>{" "}
-          <span className="font-semibold">#{self.rank}</span>
+      <div className="flex shrink-0 items-baseline gap-3 tabular-nums">
+        <span className="text-lg font-semibold leading-none">
+          #{self.rank}
         </span>
+        <span className="text-muted-foreground/50">·</span>
         <span>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-lg font-semibold leading-none">
+            {self.score.toLocaleString()}
+          </span>
+          <span className="ml-1 text-[11px] uppercase tracking-wide text-muted-foreground">
             {t("leaderboard.myScore")}
-          </span>{" "}
-          <span className="font-semibold">{self.score.toLocaleString()}</span>
+          </span>
         </span>
       </div>
     </div>
