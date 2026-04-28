@@ -1,46 +1,18 @@
-name: techarrow-frontend
-
 services:
   web:
     build:
       context: ./web
-      dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
-    image: techarrow/web:latest
-    container_name: techarrow-web
-    init: true
-    environment:
-      NODE_ENV: production
-      PORT: 3000
     ports:
       - "${WEB_PORT:-3000}:3000"
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/ >/dev/null 2>&1 || exit 1"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 20s
 
   admin:
     build:
       context: ./admin
-      dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
-    image: techarrow/admin:latest
-    container_name: techarrow-admin
-    init: true
-    environment:
-      NODE_ENV: production
-      PORT: 3000
     ports:
       - "${ADMIN_PORT:-3001}:3000"
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/ >/dev/null 2>&1 || exit 1"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 20s

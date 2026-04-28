@@ -1,22 +1,11 @@
-# syntax=docker/dockerfile:1.7
 FROM node:20-alpine
-
 WORKDIR /app
-
-RUN apk add --no-cache tini \
- && corepack enable && corepack prepare pnpm@10 --activate
+RUN corepack enable && corepack prepare pnpm@10 --activate
 
 COPY package.json pnpm-lock.yaml ./
-RUN --mount=type=cache,id=pnpm-store-admin-dev,target=/root/.local/share/pnpm/store \
-    pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 
-ENV NEXT_TELEMETRY_DISABLED=1 \
-    PORT=3000 \
-    HOSTNAME=0.0.0.0
-
 EXPOSE 3000
-
-ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["sh", "-c", "pnpm install --prefer-offline --silent && pnpm exec next dev --hostname 0.0.0.0 --port 3000"]
+CMD ["pnpm", "exec", "next", "dev", "--hostname", "0.0.0.0", "--port", "3000"]
