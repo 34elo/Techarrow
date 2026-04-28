@@ -6,10 +6,10 @@ import { Controller, useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 
 import { useTranslations } from "@/shared/i18n/i18n-provider";
+import { cn } from "@/shared/lib/classnames";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
-import { SelectNative } from "@/shared/ui/select-native";
 import { Textarea } from "@/shared/ui/textarea";
 import { QUEST_DIFFICULTY_VALUES } from "@/entities/quest";
 
@@ -138,24 +138,53 @@ export function QuestForm({
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="difficulty">
+          <Label id="difficulty-label">
             {t("questCreate.difficultyLabel")}
           </Label>
           <Controller
             control={form.control}
             name="difficulty"
             render={({ field }) => (
-              <SelectNative
-                id="difficulty"
-                value={String(field.value)}
-                onChange={(event) => field.onChange(Number(event.target.value))}
+              <div
+                role="radiogroup"
+                aria-labelledby="difficulty-label"
+                className="grid grid-cols-5 gap-1.5"
               >
-                {QUEST_DIFFICULTY_VALUES.map((value) => (
-                  <option key={value} value={value}>
-                    {value}
-                  </option>
-                ))}
-              </SelectNative>
+                {QUEST_DIFFICULTY_VALUES.map((value) => {
+                  const active = field.value === value;
+                  return (
+                    <button
+                      key={value}
+                      type="button"
+                      role="radio"
+                      aria-checked={active}
+                      onClick={() => field.onChange(value)}
+                      title={t(`questCreate.difficultyLevels.${value}`)}
+                      className={cn(
+                        "flex h-16 flex-col items-center justify-center gap-0.5 rounded-xl border px-1 text-center transition-colors",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
+                        active
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-border bg-card text-card-foreground hover:border-primary/40",
+                      )}
+                    >
+                      <span className="text-base font-semibold leading-none">
+                        {value}
+                      </span>
+                      <span
+                        className={cn(
+                          "truncate text-[10px] leading-tight",
+                          active
+                            ? "text-primary-foreground/85"
+                            : "text-muted-foreground",
+                        )}
+                      >
+                        {t(`questCreate.difficultyLevels.${value}`)}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             )}
           />
           <FieldError message={form.formState.errors.difficulty?.message} />

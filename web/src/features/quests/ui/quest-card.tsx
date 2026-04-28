@@ -16,8 +16,12 @@ import { FavoriteButton } from "@/features/quest-favorites";
 import { useCompletedQuestIds } from "@/features/quest-run";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { cn } from "@/shared/lib/classnames";
+import { truncateText } from "@/shared/lib/text";
 import { Badge } from "@/shared/ui/badge";
 import { Card, CardContent } from "@/shared/ui/card";
+
+const TITLE_PREVIEW_MAX = 60;
+const DESCRIPTION_PREVIEW_MAX = 50;
 
 type QuestCardProps = {
   quest: Quest;
@@ -86,11 +90,11 @@ export function QuestCard({ quest, className, showStatus }: QuestCardProps) {
               {t("quest.difficulty")}: {getDifficultyLabel(quest.difficulty)}
             </span>
           </div>
-          <h3 className="line-clamp-2 text-base font-semibold leading-snug">
-            {quest.title}
+          <h3 className="line-clamp-2 break-words text-base font-semibold leading-snug">
+            {truncateText(quest.title, TITLE_PREVIEW_MAX)}
           </h3>
-          <p className="line-clamp-2 text-sm text-muted-foreground">
-            {quest.description}
+          <p className="line-clamp-2 break-words text-sm text-muted-foreground">
+            {truncateText(quest.description, DESCRIPTION_PREVIEW_MAX)}
           </p>
           <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-1">

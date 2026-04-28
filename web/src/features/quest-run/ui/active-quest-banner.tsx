@@ -11,8 +11,11 @@ import { runModeStorage, type QuestMode } from "../lib/run-mode-storage";
 import { useQuestDetail } from "@/features/quests";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { cn } from "@/shared/lib/classnames";
+import { truncateText } from "@/shared/lib/text";
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
+
+const BANNER_TITLE_MAX = 50;
 
 type ActiveQuestBannerProps = {
   className?: string;
@@ -85,7 +88,9 @@ export function ActiveQuestBanner({ className }: ActiveQuestBannerProps) {
           </div>
 
           <h3 className="truncate text-lg font-semibold text-primary">
-            {quest?.title ?? t("activeQuest.loadingTitle")}
+            {quest?.title
+              ? truncateText(quest.title, BANNER_TITLE_MAX)
+              : t("activeQuest.loadingTitle")}
           </h3>
 
           <div className="space-y-1.5">

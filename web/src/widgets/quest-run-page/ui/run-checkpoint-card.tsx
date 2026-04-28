@@ -66,7 +66,7 @@ export function RunCheckpointCard({
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
             {stepLabel}
           </p>
-          <h2 className="text-xl font-semibold leading-tight">
+          <h2 className="break-words text-xl font-semibold leading-tight">
             {checkpoint.title}
           </h2>
           <p className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -77,7 +77,7 @@ export function RunCheckpointCard({
           </p>
         </div>
 
-        <p className="whitespace-pre-wrap text-sm leading-relaxed">
+        <p className="whitespace-pre-wrap break-words text-sm leading-relaxed">
           {checkpoint.task}
         </p>
 
@@ -86,7 +86,7 @@ export function RunCheckpointCard({
             <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-foreground/80">
               {t("run.pointRules")}
             </p>
-            <p className="whitespace-pre-wrap">{checkpoint.point_rules}</p>
+            <p className="whitespace-pre-wrap break-words">{checkpoint.point_rules}</p>
           </div>
         ) : null}
 
@@ -104,7 +104,7 @@ export function RunCheckpointCard({
               {hintOpen ? t("run.hideHint") : t("run.showHint")}
             </Button>
             {hintOpen ? (
-              <p className="mt-2 whitespace-pre-wrap rounded-2xl bg-primary/5 p-3 text-sm text-foreground/80">
+              <p className="mt-2 whitespace-pre-wrap break-words rounded-2xl bg-primary/5 p-3 text-sm text-foreground/80">
                 {checkpoint.hint}
               </p>
             ) : null}

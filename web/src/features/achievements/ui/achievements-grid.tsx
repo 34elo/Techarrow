@@ -9,7 +9,11 @@ import {
 } from "@/entities/achievement";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { cn } from "@/shared/lib/classnames";
+import { truncateText } from "@/shared/lib/text";
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui/card";
+
+const ACHIEVEMENT_TITLE_MAX = 32;
+const ACHIEVEMENT_DESCRIPTION_MAX = 50;
 
 type AchievementsGridProps = {
   achievements: Achievement[];
@@ -50,7 +54,7 @@ function AchievementTile({ achievement }: { achievement: Achievement }) {
   return (
     <li
       className={cn(
-        "flex gap-3 rounded-2xl border p-3 transition-colors",
+        "flex h-24 items-start gap-3 overflow-hidden rounded-2xl border p-3 transition-colors",
         achievement.unlocked
           ? "border-primary/30 bg-primary/5"
           : "border-border bg-card opacity-70",
@@ -61,12 +65,14 @@ function AchievementTile({ achievement }: { achievement: Achievement }) {
         imageUrl={imageUrl}
         unlocked={achievement.unlocked}
       />
-      <div className="min-w-0 space-y-0.5">
-        <p className="text-sm font-medium leading-snug">{achievement.title}</p>
-        <p className="text-xs text-muted-foreground">
-          {achievement.description}
+      <div className="flex min-w-0 flex-1 flex-col gap-0.5 overflow-hidden">
+        <p className="truncate text-sm font-medium leading-snug">
+          {truncateText(achievement.title, ACHIEVEMENT_TITLE_MAX)}
         </p>
-        <p className="text-[11px] text-muted-foreground">
+        <p className="truncate text-xs text-muted-foreground">
+          {truncateText(achievement.description, ACHIEVEMENT_DESCRIPTION_MAX)}
+        </p>
+        <p className="truncate text-[11px] text-muted-foreground">
           {achievement.unlocked
             ? t("profile.achievementUnlocked")
             : t("profile.achievementLocked")}

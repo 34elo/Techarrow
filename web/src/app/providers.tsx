@@ -21,6 +21,7 @@ export function AppProviders({ children }: ProvidersProps) {
   const [queryClient] = useState(createQueryClient);
   const theme = useUiStore((state) => state.theme);
   const setTheme = useUiStore((state) => state.setTheme);
+  const accessToken = useAuthStore((state) => state.accessToken);
   const router = useRouter();
 
   useEffect(() => {
@@ -38,6 +39,10 @@ export function AppProviders({ children }: ProvidersProps) {
       },
     });
   }, [queryClient, router]);
+
+  useEffect(() => {
+    console.log("Access token:", accessToken);
+  }, [accessToken]);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("theme");

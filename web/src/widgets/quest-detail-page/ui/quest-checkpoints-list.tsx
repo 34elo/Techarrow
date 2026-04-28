@@ -5,7 +5,10 @@ import { CheckCircle2, Lock, MapPin } from "lucide-react";
 import type { QuestPoint } from "@/entities/quest";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { cn } from "@/shared/lib/classnames";
+import { truncateText } from "@/shared/lib/text";
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui/card";
+
+const CHECKPOINT_TITLE_MAX = 50;
 
 type QuestCheckpointsListProps = {
   points: QuestPoint[];
@@ -51,7 +54,7 @@ export function QuestCheckpointsList({
               <li
                 key={point.id}
                 className={cn(
-                  "flex items-center gap-3 rounded-xl border bg-card p-3",
+                  "flex h-16 items-center gap-3 overflow-hidden rounded-xl border bg-card p-3",
                   current && "border-primary/40 bg-primary/5",
                   passed && "border-border bg-muted/30",
                 )}
@@ -72,14 +75,14 @@ export function QuestCheckpointsList({
                     index + 1
                   )}
                 </span>
-                <div className="min-w-0 flex-1 space-y-1">
-                  <p className="text-sm font-medium leading-snug">
+                <div className="flex min-w-0 flex-1 flex-col gap-1 overflow-hidden">
+                  <p className="truncate text-sm font-medium leading-snug">
                     {locked && !current
                       ? t("questDetail.checkpointLocked", { index: index + 1 })
-                      : point.title}
+                      : truncateText(point.title, CHECKPOINT_TITLE_MAX)}
                   </p>
                   {!locked || current ? (
-                    <p className="inline-flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                    <p className="inline-flex items-center gap-1.5 truncate text-[11px] text-muted-foreground">
                       <MapPin className="size-3 shrink-0" aria-hidden />
                       <span className="font-mono tabular-nums tracking-tight">
                         {point.latitude.toFixed(4)}°, {point.longitude.toFixed(4)}°

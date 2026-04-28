@@ -31,6 +31,10 @@ export const queryKeys = {
     active: () => [...queryKeys.questRun.all, "active"] as const,
     history: () => [...queryKeys.questRun.all, "history"] as const,
   },
+  teamQuestRun: {
+    all: ["team-quest-run"] as const,
+    active: () => [...queryKeys.teamQuestRun.all, "active"] as const,
+  },
   teams: {
     all: ["teams"] as const,
     me: () => [...queryKeys.teams.all, "me"] as const,

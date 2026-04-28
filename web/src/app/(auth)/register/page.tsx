@@ -1,12 +1,18 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { useRegister } from "@/features/auth";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
+import {
+  MAX_AGE,
+  MIN_AGE,
+  getBirthdateBounds,
+  isBirthdateInAgeRange,
+} from "@/shared/lib/age";
 import { Button } from "@/shared/ui/button";
 import {
   Card,
@@ -29,8 +35,17 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [birthdate, setBirthdate] = useState("");
 
+  const birthdateBounds = useMemo(() => getBirthdateBounds(), []);
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!isBirthdateInAgeRange(birthdate)) {
+      toast.error(
+        t("auth.ageInvalid", { min: MIN_AGE, max: MAX_AGE }),
+      );
+      return;
+    }
 
     register.mutate(
       { email, username, password, birthdate },
@@ -90,6 +105,8 @@ export default function RegisterPage() {
               name="birthdate"
               type="date"
               required
+              min={birthdateBounds.min}
+              max={birthdateBounds.max}
               value={birthdate}
               onChange={(event) => setBirthdate(event.target.value)}
               disabled={register.isPending}

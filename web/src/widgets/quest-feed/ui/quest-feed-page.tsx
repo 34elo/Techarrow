@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { ActiveQuestBanner } from "@/features/quest-run";
+import { ActiveTeamQuestBanner } from "@/features/team-quest-run";
 import { QuestCardList } from "@/features/quests/ui/quest-card-list";
 import { useQuests } from "@/features/quests";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
@@ -49,6 +50,7 @@ export function QuestFeedPage() {
       </header>
 
       <ActiveQuestBanner />
+      <ActiveTeamQuestBanner />
 
       {questsQuery.isLoading ? (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

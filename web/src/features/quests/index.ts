@@ -9,6 +9,7 @@ export { useQuests } from "./model/use-quests";
 export type { UseQuestsParams, QuestScope } from "./model/use-quests";
 export { useQuestDetail } from "./model/use-quest-detail";
 export { useCreateQuest } from "./model/use-create-quest";
+export { useExportQuest } from "./model/use-export-quest";
 export { useQuestsForMap } from "./model/use-quests-for-map";
 export {
   useQuestStatuses,

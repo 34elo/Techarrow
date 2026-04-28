@@ -9,6 +9,7 @@ import {
   useActiveQuestRun,
   useCompletedQuestIds,
 } from "@/features/quest-run";
+import { ActiveTeamQuestBanner } from "@/features/team-quest-run";
 import { useQuestDetail } from "@/features/quests";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { useAuthStore } from "@/shared/store/auth-store";
@@ -51,6 +52,7 @@ export function QuestDetailPage() {
       </header>
 
       <ActiveQuestBanner />
+      <ActiveTeamQuestBanner />
 
       {questQuery.isLoading ? (
         <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">

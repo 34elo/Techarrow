@@ -1,11 +1,17 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 
 import type { AuthUser } from "@/entities/user";
 import { useUpdateProfile } from "@/features/profile";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
+import {
+  MAX_AGE,
+  MIN_AGE,
+  getBirthdateBounds,
+  isBirthdateInAgeRange,
+} from "@/shared/lib/age";
 import { Button } from "@/shared/ui/button";
 import {
   Dialog,
@@ -43,8 +49,14 @@ function EditProfileDialogBody({
   const [username, setUsername] = useState(user.username);
   const [birthdate, setBirthdate] = useState(user.birthdate);
 
+  const birthdateBounds = useMemo(() => getBirthdateBounds(), []);
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!isBirthdateInAgeRange(birthdate)) {
+      toast.error(t("auth.ageInvalid", { min: MIN_AGE, max: MAX_AGE }));
+      return;
+    }
     updateProfile.mutate(
       { username, birthdate },
       {
@@ -87,6 +99,9 @@ function EditProfileDialogBody({
           <Input
             id="profile-birthdate"
             type="date"
+            required
+            min={birthdateBounds.min}
+            max={birthdateBounds.max}
             value={birthdate}
             onChange={(event) => setBirthdate(event.target.value)}
           />

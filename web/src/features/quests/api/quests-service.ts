@@ -146,4 +146,11 @@ export const questsService = {
   async removeFavorite(id: number | string): Promise<void> {
     await httpClient.delete(`/api/quests/${id}/favorite`);
   },
+
+  async exportPdf(id: number | string): Promise<Blob> {
+    const { data } = await httpClient.get<Blob>(`/api/quests/${id}/export`, {
+      responseType: "blob",
+    });
+    return data;
+  },
 };
