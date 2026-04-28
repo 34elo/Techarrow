@@ -40,16 +40,16 @@ export const translations = {
     },
     tabs: {
       moderation: "На модерации",
-      published: "Опубликованные",
+      published: "Все квесты",
       complaints: "Жалобы",
     },
     sections: {
       questsTitle: "Квесты на модерации",
       questsDescription:
         "Проверьте и одобрите новые квесты или отклоните их с указанием причин",
-      reportsTitle: "Опубликованные квесты",
+      reportsTitle: "Все квесты",
       reportsDescription:
-        "Здесь отображаются опубликованные квесты и их текущее состояние",
+        "Здесь отображаются все квесты и их текущее состояние",
       requestsTitle: "Жалобы пользователей",
       requestsDescription:
         "Рассмотрите жалобы, проверьте контент и примите решение по каждой заявке",
@@ -103,7 +103,7 @@ export const translations = {
     },
     reports: {
       searchPlaceholder: "Поиск по названию, автору, городу или району",
-      empty: "Опубликованных квестов пока нет",
+      empty: "Квестов пока нет",
     },
     requests: {
       searchPlaceholder: "Поиск по жалобам",
@@ -188,15 +188,15 @@ export const translations = {
     },
     tabs: {
       moderation: "Under Review",
-      published: "Published",
+      published: "All Quests",
       complaints: "Complaints",
     },
     sections: {
       questsTitle: "Quests Under Review",
       questsDescription:
         "Review and approve new quests or reject them with a reason",
-      reportsTitle: "Published Quests",
-      reportsDescription: "Published quests and their current state are shown here",
+      reportsTitle: "All Quests",
+      reportsDescription: "All quests and their current state are shown here",
       requestsTitle: "User Complaints",
       requestsDescription:
         "Review complaints, validate content, and make a decision for each case",
@@ -250,7 +250,7 @@ export const translations = {
     },
     reports: {
       searchPlaceholder: "Search by title, author, city, or district",
-      empty: "No published quests yet",
+      empty: "No quests yet",
     },
     requests: {
       searchPlaceholder: "Search complaints",
@@ -336,16 +336,16 @@ export const translations = {
     },
     tabs: {
       moderation: "En modération",
-      published: "Publiées",
+      published: "Toutes les quêtes",
       complaints: "Plaintes",
     },
     sections: {
       questsTitle: "Quêtes en modération",
       questsDescription:
         "Examinez et approuvez les nouvelles quêtes ou rejetez-les en précisant la raison",
-      reportsTitle: "Quêtes publiées",
+      reportsTitle: "Toutes les quêtes",
       reportsDescription:
-        "Les quêtes publiées et leur état actuel s'affichent ici",
+        "Toutes les quêtes et leur état actuel s'affichent ici",
       requestsTitle: "Plaintes des utilisateurs",
       requestsDescription:
         "Examinez les plaintes, vérifiez le contenu et prenez une décision pour chaque cas",
@@ -399,7 +399,7 @@ export const translations = {
     },
     reports: {
       searchPlaceholder: "Recherche par titre, auteur, ville ou quartier",
-      empty: "Aucune quête publiée pour le moment",
+      empty: "Aucune quête pour le moment",
     },
     requests: {
       searchPlaceholder: "Rechercher des plaintes",
@@ -485,15 +485,15 @@ export const translations = {
     },
     tabs: {
       moderation: "समीक्षा में",
-      published: "प्रकाशित",
+      published: "सभी क्वेस्ट",
       complaints: "शिकायतें",
     },
     sections: {
       questsTitle: "समीक्षा में क्वेस्ट",
       questsDescription:
         "नए क्वेस्ट की समीक्षा करें और स्वीकृत करें या कारण के साथ अस्वीकृत करें",
-      reportsTitle: "प्रकाशित क्वेस्ट",
-      reportsDescription: "यहाँ प्रकाशित क्वेस्ट और उनकी वर्तमान स्थिति दिखाई जाती है",
+      reportsTitle: "सभी क्वेस्ट",
+      reportsDescription: "यहाँ सभी क्वेस्ट और उनकी वर्तमान स्थिति दिखाई जाती है",
       requestsTitle: "उपयोगकर्ता शिकायतें",
       requestsDescription:
         "शिकायतों की समीक्षा करें, सामग्री की जाँच करें और प्रत्येक मामले पर निर्णय लें",
@@ -547,7 +547,7 @@ export const translations = {
     },
     reports: {
       searchPlaceholder: "शीर्षक, लेखक, शहर या क्षेत्र से खोजें",
-      empty: "अभी कोई प्रकाशित क्वेस्ट नहीं",
+      empty: "अभी कोई क्वेस्ट नहीं",
     },
     requests: {
       searchPlaceholder: "शिकायतें खोजें",
