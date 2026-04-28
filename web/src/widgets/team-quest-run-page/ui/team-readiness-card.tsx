@@ -94,10 +94,7 @@ export function TeamReadinessCard({
                     </Badge>
                   ) : (
                     <Badge variant="secondary">
-                      <Loader2
-                        className="size-3 animate-spin"
-                        aria-hidden
-                      />
+                      <Loader2 className="size-3 animate-spin" aria-hidden />
                       {t("teamRun.notReady")}
                     </Badge>
                   )}

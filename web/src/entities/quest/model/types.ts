@@ -49,7 +49,9 @@ export type QuestDetail = Quest & {
   points: QuestPoint[];
 };
 
-export function getQuestCoverImageUrl(quest: Pick<Quest, "id" | "image_file_id">): string {
+export function getQuestCoverImageUrl(
+  quest: Pick<Quest, "id" | "image_file_id">,
+): string {
   if (quest.image_file_id) {
     return `${env.apiBaseUrl}/api/file/${encodeURIComponent(
       quest.image_file_id,

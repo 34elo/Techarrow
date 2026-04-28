@@ -30,7 +30,9 @@ export function QuestDetailPage() {
   const { t } = useTranslations();
   const userId = useAuthStore((state) => state.user?.id);
 
-  const questQuery = useQuestDetail(Number.isFinite(questId) ? questId : undefined);
+  const questQuery = useQuestDetail(
+    Number.isFinite(questId) ? questId : undefined,
+  );
   const { data: activeRun } = useActiveQuestRun();
   const completedIds = useCompletedQuestIds();
 

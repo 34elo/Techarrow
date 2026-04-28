@@ -17,7 +17,10 @@ export function useMyTeam() {
       try {
         return await teamsService.getMy();
       } catch (error) {
-        if (error instanceof ApiError && (error.status === 404 || error.status === 400)) {
+        if (
+          error instanceof ApiError &&
+          (error.status === 404 || error.status === 400)
+        ) {
           return null;
         }
         throw error;

@@ -63,7 +63,9 @@ export function LeaderboardTable({
                       {entry.rank}
                     </span>
                   ) : (
-                    <span className="text-base font-semibold">{entry.rank}</span>
+                    <span className="text-base font-semibold">
+                      {entry.rank}
+                    </span>
                   )}
                 </td>
                 <td className="px-4 py-3 font-medium">{entry.name}</td>

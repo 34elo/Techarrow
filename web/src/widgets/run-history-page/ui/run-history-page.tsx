@@ -71,9 +71,7 @@ export function RunHistoryPage() {
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Button
                 variant="outline"
-                onClick={() =>
-                  setVisibleCount((count) => count + PAGE_SIZE)
-                }
+                onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
               >
                 {t("common.loadMore")}
               </Button>

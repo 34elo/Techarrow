@@ -64,7 +64,9 @@ export function QuestCheckpointsList({
                     "flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold",
                     current && "bg-primary text-primary-foreground",
                     passed && "bg-muted text-muted-foreground",
-                    !current && !passed && "bg-secondary text-secondary-foreground",
+                    !current &&
+                      !passed &&
+                      "bg-secondary text-secondary-foreground",
                   )}
                 >
                   {passed ? (
@@ -85,7 +87,8 @@ export function QuestCheckpointsList({
                     <p className="inline-flex items-center gap-1.5 truncate text-[11px] text-muted-foreground">
                       <MapPin className="size-3 shrink-0" aria-hidden />
                       <span className="font-mono tabular-nums tracking-tight">
-                        {point.latitude.toFixed(4)}°, {point.longitude.toFixed(4)}°
+                        {point.latitude.toFixed(4)}°,{" "}
+                        {point.longitude.toFixed(4)}°
                       </span>
                     </p>
                   ) : null}

@@ -10,11 +10,7 @@ type SelfPositionCardProps = {
   team: Team | null;
 };
 
-export function SelfPositionCard({
-  scope,
-  self,
-  team,
-}: SelfPositionCardProps) {
+export function SelfPositionCard({ scope, self, team }: SelfPositionCardProps) {
   const { t } = useTranslations();
 
   if (scope === "teams" && !team) {
@@ -31,7 +27,7 @@ export function SelfPositionCard({
 
   const heading =
     scope === "teams"
-      ? team?.name ?? t("leaderboard.myTeamLabel")
+      ? (team?.name ?? t("leaderboard.myTeamLabel"))
       : t("leaderboard.myPlace");
 
   return (

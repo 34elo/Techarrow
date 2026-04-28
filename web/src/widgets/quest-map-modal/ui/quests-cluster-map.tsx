@@ -8,10 +8,7 @@ import type {
   MapMouseEvent,
 } from "maplibre-gl";
 
-import {
-  STATUS_COLORS,
-  type QuestPersonalStatus,
-} from "@/features/quests";
+import { STATUS_COLORS, type QuestPersonalStatus } from "@/features/quests";
 import { cn } from "@/shared/lib/classnames";
 
 const OSM_RASTER_STYLE = {
@@ -201,7 +198,10 @@ export function QuestsClusterMap({
         zoom,
         attributionControl: { compact: true },
       });
-      map.addControl(new maplibre.NavigationControl({ showCompass: false }), "top-right");
+      map.addControl(
+        new maplibre.NavigationControl({ showCompass: false }),
+        "top-right",
+      );
 
       map.on("load", async () => {
         await ensurePinImages(map);

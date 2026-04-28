@@ -1,76 +1,81 @@
-"use client"
+"use client";
 
-import { useMemo, useState } from "react"
-import { toast } from "sonner"
+import { useMemo, useState } from "react";
+import { toast } from "sonner";
 
-import { mapQuestToCard, type QuestSummary } from "@/entities/quest"
-import { useApproveQuest, useQuests, useRejectQuest } from "@/features/quests"
-import { RejectReasonDialog } from "@/features/reject/ui/reject-reason-dialog"
-import { useTranslations } from "@/shared/i18n/i18n-provider"
-import { InfiniteListFooter } from "@/shared/ui/infinite-list-footer"
-import { QuestCardsList } from "@/shared/ui/quest-cards-list"
-import { type QuestCardData } from "@/shared/ui/quest-card"
-import { QuestsSearch } from "@/shared/ui/quests-search"
+import { mapQuestToCard, type QuestSummary } from "@/entities/quest";
+import { useApproveQuest, useQuests, useRejectQuest } from "@/features/quests";
+import { RejectReasonDialog } from "@/features/reject/ui/reject-reason-dialog";
+import { useTranslations } from "@/shared/i18n/i18n-provider";
+import { InfiniteListFooter } from "@/shared/ui/infinite-list-footer";
+import { QuestCardsList } from "@/shared/ui/quest-cards-list";
+import { type QuestCardData } from "@/shared/ui/quest-card";
+import { QuestsSearch } from "@/shared/ui/quests-search";
 
 export default function RequestsPage() {
-  const { t } = useTranslations()
-  const [searchQuery, setSearchQuery] = useState("")
-  const [questToReject, setQuestToReject] = useState<QuestSummary | null>(null)
+  const { t } = useTranslations();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [questToReject, setQuestToReject] = useState<QuestSummary | null>(null);
 
-  const questsQuery = useQuests({ scope: "moderation" })
-  const approveQuest = useApproveQuest()
-  const rejectQuest = useRejectQuest()
+  const questsQuery = useQuests({ scope: "moderation" });
+  const approveQuest = useApproveQuest();
+  const rejectQuest = useRejectQuest();
 
   const cards = useMemo(() => {
-    const normalizedQuery = searchQuery.trim().toLowerCase()
+    const normalizedQuery = searchQuery.trim().toLowerCase();
     return questsQuery.items
       .filter((quest) => {
-        if (!normalizedQuery) return true
+        if (!normalizedQuery) return true;
         return (
           quest.title.toLowerCase().includes(normalizedQuery) ||
           quest.creator.username.toLowerCase().includes(normalizedQuery) ||
           quest.location.toLowerCase().includes(normalizedQuery)
-        )
+        );
       })
-      .map((quest) => ({ quest, card: mapQuestToCard(quest, t) as QuestCardData }))
-  }, [questsQuery.items, searchQuery, t])
+      .map((quest) => ({
+        quest,
+        card: mapQuestToCard(quest, t) as QuestCardData,
+      }));
+  }, [questsQuery.items, searchQuery, t]);
 
   const cardsByCardId = useMemo(() => {
-    const map = new Map<string, QuestSummary>()
+    const map = new Map<string, QuestSummary>();
     for (const { quest, card } of cards) {
-      if (card.id) map.set(card.id, quest)
+      if (card.id) map.set(card.id, quest);
     }
-    return map
-  }, [cards])
+    return map;
+  }, [cards]);
 
   const handleApprove = (card: QuestCardData) => {
-    if (!card.id) return
-    const quest = cardsByCardId.get(card.id)
-    if (!quest) return
+    if (!card.id) return;
+    const quest = cardsByCardId.get(card.id);
+    if (!quest) return;
 
     approveQuest.mutate(quest.id, {
       onSuccess: () => {
         toast.success(t("toasts.questApproved"), {
-          description: t("toasts.questApprovedDescription", { title: quest.title }),
-        })
+          description: t("toasts.questApprovedDescription", {
+            title: quest.title,
+          }),
+        });
       },
       onError: (error) => {
         toast.error(t("toasts.approveFailed"), {
           description: error.message || t("toasts.tryAgain"),
-        })
+        });
       },
-    })
-  }
+    });
+  };
 
   const handleRejectRequest = (card: QuestCardData) => {
-    if (!card.id) return
-    const quest = cardsByCardId.get(card.id)
-    if (!quest) return
-    setQuestToReject(quest)
-  }
+    if (!card.id) return;
+    const quest = cardsByCardId.get(card.id);
+    if (!quest) return;
+    setQuestToReject(quest);
+  };
 
   const handleConfirmReject = async (reason: string) => {
-    if (!questToReject) return
+    if (!questToReject) return;
 
     await rejectQuest.mutateAsync(
       { id: questToReject.id, reason },
@@ -81,16 +86,18 @@ export default function RequestsPage() {
               title: questToReject.title,
               reason,
             }),
-          })
+          });
         },
       },
-    )
-  }
+    );
+  };
 
   return (
     <>
       <div>
-        <h1 className="text-2xl font-semibold">{t("sections.requestsTitle")}</h1>
+        <h1 className="text-2xl font-semibold">
+          {t("sections.requestsTitle")}
+        </h1>
         <p className="text-sm text-muted-foreground mb-4">
           {t("sections.requestsDescription")}
         </p>
@@ -101,13 +108,17 @@ export default function RequestsPage() {
         />
 
         {questsQuery.isLoading ? (
-          <p className="text-sm text-muted-foreground py-6">{t("common.loading")}</p>
+          <p className="text-sm text-muted-foreground py-6">
+            {t("common.loading")}
+          </p>
         ) : questsQuery.isError ? (
           <p className="text-sm text-destructive py-6">
             {questsQuery.error?.message || t("common.loadError")}
           </p>
         ) : cards.length === 0 ? (
-          <p className="text-sm text-muted-foreground py-6">{t("requests.empty")}</p>
+          <p className="text-sm text-muted-foreground py-6">
+            {t("requests.empty")}
+          </p>
         ) : (
           <>
             <QuestCardsList
@@ -128,12 +139,12 @@ export default function RequestsPage() {
         open={Boolean(questToReject)}
         onOpenChange={(open) => {
           if (!open) {
-            setQuestToReject(null)
+            setQuestToReject(null);
           }
         }}
         questTitle={questToReject?.title ?? ""}
         onConfirm={handleConfirmReject}
       />
     </>
-  )
+  );
 }

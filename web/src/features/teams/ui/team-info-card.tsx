@@ -98,11 +98,7 @@ export function TeamInfoCard({ team }: TeamInfoCardProps) {
               <Copy />
               {copied ? t("team.copiedCode") : t("team.copyCode")}
             </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => setQrOpen(true)}
-            >
+            <Button size="sm" variant="outline" onClick={() => setQrOpen(true)}>
               <QrCode />
               {t("team.showQr")}
             </Button>

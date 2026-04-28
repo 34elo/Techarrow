@@ -54,9 +54,7 @@ export function QuestDetailActions({
     activeRun?.status === "in_progress" && activeRun.quest_id !== questId;
 
   const teamRunOnThisQuest =
-    activeTeamRun && activeTeamRun.quest_id === questId
-      ? activeTeamRun
-      : null;
+    activeTeamRun && activeTeamRun.quest_id === questId ? activeTeamRun : null;
   const hasOtherTeamRun =
     activeTeamRun &&
     activeTeamRun.quest_id !== questId &&

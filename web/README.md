@@ -1,6 +1,6 @@
 # Пользовательская панель (Web)
 
-Веб-приложение «Квесты» для участников: каталог квестов, прохождение чекпоинтов с геолокацией, командная игра, рейтинг, достижения и создание собственных квестов с отправкой на модерацию. Реализовано на **Next.js 16** (App Router), **React 19**, **TanStack Query**, **Tailwind CSS**, **shadcn/ui** и **MapLibre GL** поверх **OpenStreetMap**.
+Веб-приложение «Квесты» для участников: каталог квестов, прохождение чекпоинтов с геолокацией (соло и командой), создание собственных квестов с отправкой на модерацию, управление своими квестами (архив / удаление), рейтинг, достижения. Реализовано на **Next.js 16** (App Router), **React 19**, **TanStack Query**, **Tailwind CSS**, **shadcn/ui** и **MapLibre GL** поверх **OpenStreetMap**.
 
 **Важно:** этот репозиторий содержит **только frontend** пользовательской панели. Для работы нужен запущенный **backend API** (см. ниже). Модерация контента живёт в отдельной [админ-панели](../admin).
 
@@ -162,9 +162,25 @@ NEXT_PUBLIC_API_URL=http://localhost:8000 docker compose -f docker-compose.dev.y
 
 ## Скрипты
 
-| Команда       | Назначение              |
-|---------------|-------------------------|
-| `pnpm dev`    | Режим разработки        |
-| `pnpm build`  | Продакшен-сборка        |
-| `pnpm start`  | Запуск собранного приложения |
-| `pnpm lint`   | Проверка ESLint         |
+| Команда                | Назначение                              |
+|------------------------|-----------------------------------------|
+| `pnpm dev`             | Режим разработки                        |
+| `pnpm build`           | Продакшен-сборка                        |
+| `pnpm start`           | Запуск собранного приложения            |
+| `pnpm lint`            | Проверка ESLint                         |
+| `pnpm format`          | Авто-форматирование Prettier            |
+| `pnpm format:check`    | Проверка форматирования без записи      |
+
+Конфигурация Prettier — в `.prettierrc.json` корня пакета. См. также [«Кодовый стиль» в корневом README](../README.md#кодовый-стиль).
+
+---
+
+## Ключевые сценарии в коде
+
+| Что | Где смотреть |
+|-----|--------------|
+| Соло-прохождение квеста | `features/quest-run/` + `widgets/quest-run-page/` |
+| **Командное прохождение** (готовность → старт → in_progress → completed) | `features/team-quest-run/`, `entities/team-quest-run/`, `widgets/team-quest-run-page/`. Поллинг 1с/2с в `model/use-team-quest-run.ts`, тосты на переходы — `model/use-team-run-notifications.ts`. |
+| Действия над своими квестами (архив / восстановить / удалить) | `features/quests/ui/my-quest-actions.tsx`, хуки `use-delete-my-quest.ts`, `use-update-my-quest-status.ts`. Рендерится в `features/quests/ui/quest-card-list.tsx` при `showOwnerActions`. |
+| Каталог достижений с прогрессом | `widgets/achievements-page/ui/achievements-page.tsx` + `features/achievements/model/use-achievements.ts` (склеивает `/api/achievements` с `/api/achievements/me`). |
+| Активные баннеры (соло и команда) | `features/quest-run/ui/active-quest-banner.tsx`, `features/team-quest-run/ui/active-team-quest-banner.tsx` — оба видны на ленте и на странице квеста. |

@@ -7,9 +7,9 @@
 | Слой | Каталог | Содержимое |
 |------|---------|------------|
 | App | `src/app` | Роутинг Next.js, `layout`, `providers`, `globals.css`, общие `error.tsx`/`not-found.tsx`/`access_denied/page.tsx` |
-| Widgets | `src/widgets` | Крупные блоки страниц: лента квестов, страницы квеста, формы создания/прохождения, рейтинг, профиль, команда, достижения |
-| Features | `src/features` | `auth`, `quests`, `quest-form`, `quest-run`, `quest-favorites`, `checkpoint-builder`, `teams`, `leaderboard`, `profile`, `achievements` |
-| Entities | `src/entities` | Доменные типы и хелперы: `user`, `quest`, `quest-run`, `checkpoint`, `team`, `leaderboard`, `achievement` |
+| Widgets | `src/widgets` | Крупные блоки страниц: лента квестов, страница квеста, формы создания, страницы соло-/командного прохождения, рейтинг, профиль, команда, достижения |
+| Features | `src/features` | `auth`, `quests`, `quest-form`, `quest-run`, `team-quest-run`, `quest-favorites`, `checkpoint-builder`, `teams`, `leaderboard`, `profile`, `achievements` |
+| Entities | `src/entities` | Доменные типы и хелперы: `user`, `quest`, `quest-run`, `team-quest-run`, `checkpoint`, `team`, `leaderboard`, `achievement` |
 | Shared | `src/shared` | Axios-клиент, конфиг env, UI-kit на shadcn/ui + Radix, Zustand-стор авторизации, TanStack Query helpers, i18n, MapLibre-обёртка, геолокация, `refresh-token-storage` |
 
 Отдельных папок `processes` / каноничного слоя `pages` нет: страницы лежат в `src/app`.
@@ -21,7 +21,7 @@
 | Группа | Гард | Перечень роутов |
 |--------|------|-----------------|
 | `(auth)` | `GuestGuard` (если уже залогинен — на `/`) | `/login`, `/register` |
-| `(main)` | `AuthGuard` (требует роль `user`; иначе `/access_denied`) | `/`, `/quests/[id]`, `/quests/[id]/run`, `/quests/my`, `/quests/new`, `/quests/favorites`, `/leaderboard`, `/team`, `/profile`, `/profile/achievements`, `/profile/history` |
+| `(main)` | `AuthGuard` (требует роль `user`; иначе `/access_denied`) | `/`, `/quests/[id]`, `/quests/[id]/run`, `/quests/[id]/team-run`, `/quests/my`, `/quests/new`, `/quests/favorites`, `/leaderboard`, `/team`, `/profile`, `/profile/achievements`, `/profile/history` |
 | Корневые | без гарда | `/access_denied`, `/error.tsx`, `/not-found.tsx` |
 
 `/access_denied` — единая страница 403 для модераторов, попавших не в ту панель, и для тех, у кого протух токен на «не-юзера».

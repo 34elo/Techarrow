@@ -18,7 +18,9 @@ type ActiveTeamQuestBannerProps = {
   className?: string;
 };
 
-export function ActiveTeamQuestBanner({ className }: ActiveTeamQuestBannerProps) {
+export function ActiveTeamQuestBanner({
+  className,
+}: ActiveTeamQuestBannerProps) {
   const { data: run } = useActiveTeamQuestRun({ poll: true });
   const { data: quest } = useQuestDetail(run?.quest_id);
   const { t } = useTranslations();

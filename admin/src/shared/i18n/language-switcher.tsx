@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { Languages } from "lucide-react"
+import { Languages } from "lucide-react";
 
-import { locales, type Locale } from "@/shared/i18n/translations"
-import { useTranslations } from "@/shared/i18n/i18n-provider"
-import { Button } from "@/shared/ui/button"
+import { locales, type Locale } from "@/shared/i18n/translations";
+import { useTranslations } from "@/shared/i18n/i18n-provider";
+import { Button } from "@/shared/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/shared/ui/dropdown-menu"
+} from "@/shared/ui/dropdown-menu";
 
 export function LanguageToggle() {
-  const { locale, setLocale, t } = useTranslations()
+  const { locale, setLocale, t } = useTranslations();
 
   return (
     <DropdownMenu>
@@ -37,5 +37,5 @@ export function LanguageToggle() {
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

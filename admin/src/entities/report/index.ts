@@ -1,1 +1,1 @@
-export type { Report, ReportAuthor } from "./model/types"
+export type { Report, ReportAuthor } from "./model/types";

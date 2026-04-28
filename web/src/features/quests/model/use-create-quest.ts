@@ -2,10 +2,7 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import {
-  questsService,
-  type CreateQuestPayload,
-} from "../api/quests-service";
+import { questsService, type CreateQuestPayload } from "../api/quests-service";
 import { queryKeys } from "@/shared/lib/react-query/query-keys";
 import type { ApiError } from "@/shared/api";
 import type { Quest } from "@/entities/quest";

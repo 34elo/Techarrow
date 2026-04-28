@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import type { ReactNode } from "react"
+import type { ReactNode } from "react";
 
-import { PanelHeader } from "@/widgets/panel-header"
+import { PanelHeader } from "@/widgets/panel-header";
 
 type PanelLayoutProps = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 export function PanelLayout({ children }: PanelLayoutProps) {
   return (
@@ -16,5 +16,5 @@ export function PanelLayout({ children }: PanelLayoutProps) {
         <section className="space-y-2">{children}</section>
       </div>
     </main>
-  )
+  );
 }

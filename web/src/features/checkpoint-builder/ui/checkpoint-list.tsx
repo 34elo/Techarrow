@@ -54,57 +54,60 @@ export function CheckpointList({
             {checkpoints.map((cp, index) => {
               const taskTooShort = cp.task.trim().length < TASK_MIN_LENGTH;
               return (
-              <li
-                key={cp.key}
-                className={cn(
-                  "flex h-28 items-start gap-3 overflow-hidden rounded-xl border bg-card p-3",
-                  taskTooShort
-                    ? "border-destructive/40 bg-destructive/5"
-                    : "border-border",
-                )}
-              >
-                <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-xs font-semibold text-primary">
-                  {index + 1}
-                </div>
-                <div className="flex min-w-0 flex-1 flex-col gap-1 overflow-hidden">
-                  <p className="truncate text-sm font-medium leading-snug">
-                    {truncateText(cp.title, PREVIEW_TITLE_MAX)}
-                  </p>
-                  <p className="truncate text-xs text-muted-foreground">
-                    {truncateText(cp.task, PREVIEW_TASK_MAX)}
-                  </p>
-                  <p className="inline-flex items-center gap-1 truncate text-[11px] text-muted-foreground">
-                    <MapPin className="size-3 shrink-0" aria-hidden />
-                    {cp.latitude.toFixed(4)}, {cp.longitude.toFixed(4)}
-                  </p>
-                  {taskTooShort ? (
-                    <p className="inline-flex items-center gap-1 truncate text-[11px] text-destructive">
-                      <AlertTriangle className="size-3 shrink-0" aria-hidden />
-                      {t("questCreate.errors.taskMinLength", {
-                        min: TASK_MIN_LENGTH,
-                      })}
+                <li
+                  key={cp.key}
+                  className={cn(
+                    "flex h-28 items-start gap-3 overflow-hidden rounded-xl border bg-card p-3",
+                    taskTooShort
+                      ? "border-destructive/40 bg-destructive/5"
+                      : "border-border",
+                  )}
+                >
+                  <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-xs font-semibold text-primary">
+                    {index + 1}
+                  </div>
+                  <div className="flex min-w-0 flex-1 flex-col gap-1 overflow-hidden">
+                    <p className="truncate text-sm font-medium leading-snug">
+                      {truncateText(cp.title, PREVIEW_TITLE_MAX)}
                     </p>
-                  ) : null}
-                </div>
-                <div className="flex shrink-0 items-center gap-1">
-                  <Button
-                    size="icon-sm"
-                    variant="ghost"
-                    aria-label={t("checkpoint.editCheckpoint")}
-                    onClick={() => onEdit(cp.key)}
-                  >
-                    <Pencil />
-                  </Button>
-                  <Button
-                    size="icon-sm"
-                    variant="ghost"
-                    aria-label={t("checkpoint.removeCheckpoint")}
-                    onClick={() => onRemove(cp.key)}
-                  >
-                    <Trash2 className="text-destructive" />
-                  </Button>
-                </div>
-              </li>
+                    <p className="truncate text-xs text-muted-foreground">
+                      {truncateText(cp.task, PREVIEW_TASK_MAX)}
+                    </p>
+                    <p className="inline-flex items-center gap-1 truncate text-[11px] text-muted-foreground">
+                      <MapPin className="size-3 shrink-0" aria-hidden />
+                      {cp.latitude.toFixed(4)}, {cp.longitude.toFixed(4)}
+                    </p>
+                    {taskTooShort ? (
+                      <p className="inline-flex items-center gap-1 truncate text-[11px] text-destructive">
+                        <AlertTriangle
+                          className="size-3 shrink-0"
+                          aria-hidden
+                        />
+                        {t("questCreate.errors.taskMinLength", {
+                          min: TASK_MIN_LENGTH,
+                        })}
+                      </p>
+                    ) : null}
+                  </div>
+                  <div className="flex shrink-0 items-center gap-1">
+                    <Button
+                      size="icon-sm"
+                      variant="ghost"
+                      aria-label={t("checkpoint.editCheckpoint")}
+                      onClick={() => onEdit(cp.key)}
+                    >
+                      <Pencil />
+                    </Button>
+                    <Button
+                      size="icon-sm"
+                      variant="ghost"
+                      aria-label={t("checkpoint.removeCheckpoint")}
+                      onClick={() => onRemove(cp.key)}
+                    >
+                      <Trash2 className="text-destructive" />
+                    </Button>
+                  </div>
+                </li>
               );
             })}
           </ul>

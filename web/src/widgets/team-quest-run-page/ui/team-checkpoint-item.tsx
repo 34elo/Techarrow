@@ -32,8 +32,8 @@ export function TeamCheckpointItem({
   const [open, setOpen] = useState(!checkpoint.is_completed);
 
   const completedBy = checkpoint.completed_by_user_id
-    ? team?.members.find((m) => m.id === checkpoint.completed_by_user_id)
-        ?.username ?? null
+    ? (team?.members.find((m) => m.id === checkpoint.completed_by_user_id)
+        ?.username ?? null)
     : null;
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {

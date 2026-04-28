@@ -17,16 +17,17 @@ import {
   type QuestFeedFilterValues,
 } from "./quest-feed-filters";
 
-
-
 export function QuestFeedPage() {
   const { t } = useTranslations();
-  const [filters, setFilters] = useState<QuestFeedFilterValues>(EMPTY_FEED_FILTERS);
+  const [filters, setFilters] =
+    useState<QuestFeedFilterValues>(EMPTY_FEED_FILTERS);
 
   const questsQuery = useQuests({
     scope: "public",
     city: filters.city.trim() || undefined,
-    difficulties: filters.difficulties.length ? filters.difficulties : undefined,
+    difficulties: filters.difficulties.length
+      ? filters.difficulties
+      : undefined,
     nearLat: filters.nearLat ?? undefined,
     nearLng: filters.nearLng ?? undefined,
   });

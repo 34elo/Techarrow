@@ -9,7 +9,12 @@ import {
   type ReactNode,
 } from "react";
 
-import { defaultLocale, locales, type Locale, translations } from "./translations";
+import {
+  defaultLocale,
+  locales,
+  type Locale,
+  translations,
+} from "./translations";
 import { isPluralForms, selectPluralForm } from "./plural";
 
 type I18nContextValue = {

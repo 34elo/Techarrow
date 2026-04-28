@@ -1,40 +1,40 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useParams } from "next/navigation"
-import { ArrowLeft, Download, User, Users } from "lucide-react"
-import { toast } from "sonner"
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { ArrowLeft, Download, User, Users } from "lucide-react";
+import { toast } from "sonner";
 
-import { useExportQuest, useQuestDetail } from "@/features/quests"
-import { useTranslations } from "@/shared/i18n/i18n-provider"
-import { Button } from "@/shared/ui/button"
-import { QuestDetailCheckpointsCard } from "@/widgets/quest-detail/ui/quest-detail-checkpoints-card"
-import { QuestDetailCoverCard } from "@/widgets/quest-detail/ui/quest-detail-cover-card"
-import { QuestDetailGeneralCard } from "@/widgets/quest-detail/ui/quest-detail-general-card"
+import { useExportQuest, useQuestDetail } from "@/features/quests";
+import { useTranslations } from "@/shared/i18n/i18n-provider";
+import { Button } from "@/shared/ui/button";
+import { QuestDetailCheckpointsCard } from "@/widgets/quest-detail/ui/quest-detail-checkpoints-card";
+import { QuestDetailCoverCard } from "@/widgets/quest-detail/ui/quest-detail-cover-card";
+import { QuestDetailGeneralCard } from "@/widgets/quest-detail/ui/quest-detail-general-card";
 
 export default function QuestDetailPage() {
-  const params = useParams<{ id: string }>()
-  const rawId = params.id
-  const routeId = typeof rawId === "string" ? decodeURIComponent(rawId) : ""
-  const { t } = useTranslations()
+  const params = useParams<{ id: string }>();
+  const rawId = params.id;
+  const routeId = typeof rawId === "string" ? decodeURIComponent(rawId) : "";
+  const { t } = useTranslations();
 
-  const questQuery = useQuestDetail(routeId)
-  const quest = questQuery.data
-  const exportMutation = useExportQuest()
+  const questQuery = useQuestDetail(routeId);
+  const quest = questQuery.data;
+  const exportMutation = useExportQuest();
 
   const handleExport = () => {
-    if (!quest) return
+    if (!quest) return;
     exportMutation.mutate(
       { id: quest.id, filename: `quest-${quest.id}.pdf` },
       {
         onError: (error) => {
           toast.error(t("quests.exportFailed"), {
             description: error.message,
-          })
+          });
         },
       },
-    )
-  }
+    );
+  };
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 pb-8 sm:gap-8">
@@ -54,11 +54,15 @@ export default function QuestDetailPage() {
               <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
                 <span>
                   {t("questDetail.id")}:{" "}
-                  <span className="font-mono text-foreground">{String(quest.id)}</span>
+                  <span className="font-mono text-foreground">
+                    {String(quest.id)}
+                  </span>
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <User className="size-3.5" aria-hidden />
-                  <span className="text-foreground">{quest.creator.username}</span>
+                  <span className="text-foreground">
+                    {quest.creator.username}
+                  </span>
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Users className="size-3.5" aria-hidden />
@@ -107,5 +111,5 @@ export default function QuestDetailPage() {
         </div>
       ) : null}
     </div>
-  )
+  );
 }

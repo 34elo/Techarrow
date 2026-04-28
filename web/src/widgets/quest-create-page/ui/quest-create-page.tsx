@@ -6,7 +6,10 @@ import { ArrowLeft, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 
-import { CheckpointDialog, CheckpointList } from "@/features/checkpoint-builder";
+import {
+  CheckpointDialog,
+  CheckpointList,
+} from "@/features/checkpoint-builder";
 import {
   QuestForm,
   useQuestDraftStore,
@@ -184,7 +187,7 @@ export function QuestCreatePage() {
         }}
         initial={
           editingKey
-            ? drafts.find((cp) => cp.key === editingKey) ?? null
+            ? (drafts.find((cp) => cp.key === editingKey) ?? null)
             : null
         }
         onSave={(cp) => {

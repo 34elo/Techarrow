@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Toaster as Sonner, type ToasterProps } from "sonner"
+import { Toaster as Sonner, type ToasterProps } from "sonner";
 
 export function Toaster(props: ToasterProps) {
   return (
@@ -15,5 +15,5 @@ export function Toaster(props: ToasterProps) {
       }}
       {...props}
     />
-  )
+  );
 }

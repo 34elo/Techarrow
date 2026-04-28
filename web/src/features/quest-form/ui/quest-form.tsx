@@ -112,9 +112,7 @@ export function QuestForm({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="description">
-          {t("questCreate.descriptionLabel")}
-        </Label>
+        <Label htmlFor="description">{t("questCreate.descriptionLabel")}</Label>
         <Textarea
           id="description"
           rows={6}
@@ -161,19 +159,19 @@ export function QuestForm({
                       onClick={() => field.onChange(value)}
                       title={t(`questCreate.difficultyLevels.${value}`)}
                       className={cn(
-                        "flex h-16 flex-col items-center justify-center gap-0.5 rounded-xl border px-1 text-center transition-colors",
+                        "flex h-14 flex-col items-center justify-center gap-0.5 rounded-xl border px-1 text-center transition-colors",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
                         active
                           ? "border-primary bg-primary text-primary-foreground"
                           : "border-border bg-card text-card-foreground hover:border-primary/40",
                       )}
                     >
-                      <span className="text-base font-semibold leading-none">
+                      <span className="text-sm font-semibold leading-none">
                         {value}
                       </span>
                       <span
                         className={cn(
-                          "truncate text-[10px] leading-tight",
+                          "truncate text-[9px] leading-tight",
                           active
                             ? "text-primary-foreground/85"
                             : "text-muted-foreground",
@@ -263,8 +261,8 @@ export function QuestForm({
           title={submitDisabled ? submitDisabledHint : undefined}
         >
           {isSubmitting
-            ? pendingLabel ?? t("questCreate.submitting")
-            : submitLabel ?? t("questCreate.submit")}
+            ? (pendingLabel ?? t("questCreate.submitting"))
+            : (submitLabel ?? t("questCreate.submit"))}
         </Button>
         {submitDisabled && submitDisabledHint ? (
           <p className="text-xs text-muted-foreground">{submitDisabledHint}</p>

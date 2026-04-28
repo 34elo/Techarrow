@@ -46,7 +46,10 @@ export const useQuestDraftStore = create<QuestDraftState>()(
         set((state) => ({
           draft: {
             ...state.draft,
-            checkpoints: [...state.draft.checkpoints, { ...cp, key: generateKey() }],
+            checkpoints: [
+              ...state.draft.checkpoints,
+              { ...cp, key: generateKey() },
+            ],
           },
           hasDraft: true,
         })),

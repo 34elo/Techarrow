@@ -128,10 +128,9 @@ export const questsService = {
     id: number | string,
     status: "published" | "archived",
   ): Promise<Quest> {
-    const { data } = await httpClient.patch<Quest>(
-      `/api/quests/${id}/status`,
-      { status },
-    );
+    const { data } = await httpClient.patch<Quest>(`/api/quests/${id}/status`, {
+      status,
+    });
     return data;
   },
 

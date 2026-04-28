@@ -1,28 +1,33 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Check, CircleAlert, X } from "lucide-react"
+import Link from "next/link";
+import { Check, CircleAlert, X } from "lucide-react";
 
-import type { Report } from "@/entities/report"
-import { useTranslations } from "@/shared/i18n/i18n-provider"
-import { Button } from "@/shared/ui/button"
+import type { Report } from "@/entities/report";
+import { useTranslations } from "@/shared/i18n/i18n-provider";
+import { Button } from "@/shared/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/shared/ui/card"
+} from "@/shared/ui/card";
 
 type ReportCardProps = {
-  report: Report
-  onAccept: (report: Report) => void
-  onDismiss: (report: Report) => void
-  isPending?: boolean
-}
+  report: Report;
+  onAccept: (report: Report) => void;
+  onDismiss: (report: Report) => void;
+  isPending?: boolean;
+};
 
-export function ReportCard({ report, onAccept, onDismiss, isPending }: ReportCardProps) {
-  const { t } = useTranslations()
+export function ReportCard({
+  report,
+  onAccept,
+  onDismiss,
+  isPending,
+}: ReportCardProps) {
+  const { t } = useTranslations();
 
   return (
     <Card className="h-full min-w-0 gap-0 overflow-hidden border-border/70 py-4 shadow-none">
@@ -75,5 +80,5 @@ export function ReportCard({ report, onAccept, onDismiss, isPending }: ReportCar
         </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }

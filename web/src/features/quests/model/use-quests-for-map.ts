@@ -28,7 +28,9 @@ type UseQuestsForMapOptions = {
   enabled?: boolean;
 };
 
-export function useQuestsForMap({ enabled = true }: UseQuestsForMapOptions = {}) {
+export function useQuestsForMap({
+  enabled = true,
+}: UseQuestsForMapOptions = {}) {
   const query = useQuery<Quest[], ApiError>({
     queryKey: queryKeys.quests.map(),
     queryFn: ({ signal }) => fetchAllQuests(signal),

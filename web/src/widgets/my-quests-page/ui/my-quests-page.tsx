@@ -132,7 +132,11 @@ function QuestSection({ scope, emptyText, emptyAction }: QuestSectionProps) {
 
   return (
     <div className="space-y-4">
-      <QuestCardList quests={items} showStatus={scope === "created"} />
+      <QuestCardList
+        quests={items}
+        showStatus={scope === "created"}
+        showOwnerActions={scope === "created"}
+      />
       <InfiniteListFooter
         hasNextPage={Boolean(query.hasNextPage)}
         fetchNextPage={() => query.fetchNextPage()}

@@ -20,7 +20,8 @@ const badgeVariants = cva(
   },
 );
 
-type BadgeProps = React.ComponentProps<"span"> & VariantProps<typeof badgeVariants>;
+type BadgeProps = React.ComponentProps<"span"> &
+  VariantProps<typeof badgeVariants>;
 
 function Badge({ className, variant, ...props }: BadgeProps) {
   return (

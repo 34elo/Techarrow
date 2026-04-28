@@ -1,4 +1,7 @@
-import { authService, type UpdateMePayload } from "@/features/auth/api/auth-service";
+import {
+  authService,
+  type UpdateMePayload,
+} from "@/features/auth/api/auth-service";
 import type { AuthUser } from "@/entities/user";
 
 export type UpdateProfilePayload = UpdateMePayload;

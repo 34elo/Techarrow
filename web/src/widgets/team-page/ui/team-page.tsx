@@ -21,9 +21,7 @@ export function TeamPage() {
         <h1 className="text-3xl font-semibold tracking-tight">
           {t("team.title")}
         </h1>
-        <p className="text-sm text-muted-foreground">
-          {t("team.description")}
-        </p>
+        <p className="text-sm text-muted-foreground">{t("team.description")}</p>
       </header>
 
       {isLoading ? (
@@ -37,9 +35,7 @@ export function TeamPage() {
       ) : (
         <div className="space-y-4">
           <div className="rounded-2xl border border-dashed border-border bg-card p-6 text-center">
-            <h2 className="text-lg font-semibold">
-              {t("team.noTeamHeading")}
-            </h2>
+            <h2 className="text-lg font-semibold">{t("team.noTeamHeading")}</h2>
             <p className="mt-1 text-sm text-muted-foreground">
               {t("team.noTeamHint")}
             </p>

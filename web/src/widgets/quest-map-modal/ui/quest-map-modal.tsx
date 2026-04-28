@@ -24,10 +24,7 @@ import {
 } from "@/shared/ui/dialog";
 import { Skeleton } from "@/shared/ui/skeleton";
 
-import {
-  QuestsClusterMap,
-  type ClusterQuestPoint,
-} from "./quests-cluster-map";
+import { QuestsClusterMap, type ClusterQuestPoint } from "./quests-cluster-map";
 
 type QuestMapModalProps = {
   open: boolean;
@@ -37,7 +34,9 @@ type QuestMapModalProps = {
 export function QuestMapModal({ open, onOpenChange }: QuestMapModalProps) {
   const { t } = useTranslations();
   const router = useRouter();
-  const { items, isLoading, isError, error } = useQuestsForMap({ enabled: open });
+  const { items, isLoading, isError, error } = useQuestsForMap({
+    enabled: open,
+  });
   const statuses = useQuestStatuses();
   const geolocation = useGeolocation();
   const [followUser, setFollowUser] = useState(false);
@@ -45,7 +44,9 @@ export function QuestMapModal({ open, onOpenChange }: QuestMapModalProps) {
   const points = useMemo<ClusterQuestPoint[]>(
     () =>
       items
-        .filter((q) => Number.isFinite(q.latitude) && Number.isFinite(q.longitude))
+        .filter(
+          (q) => Number.isFinite(q.latitude) && Number.isFinite(q.longitude),
+        )
         .map((q) => ({
           id: q.id,
           title: q.title,
@@ -129,7 +130,9 @@ export function QuestMapModal({ open, onOpenChange }: QuestMapModalProps) {
           )}
         </div>
         {!isLoading && !isError && points.length === 0 ? (
-          <p className="text-sm text-muted-foreground">{t("quests.mapEmpty")}</p>
+          <p className="text-sm text-muted-foreground">
+            {t("quests.mapEmpty")}
+          </p>
         ) : null}
       </DialogContent>
     </Dialog>

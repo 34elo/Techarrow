@@ -1,7 +1,7 @@
-export const locales = ["ru", "en", "fr", "hi"] as const
-export type Locale = (typeof locales)[number]
+export const locales = ["ru", "en", "fr", "hi"] as const;
+export type Locale = (typeof locales)[number];
 
-export const defaultLocale: Locale = "ru"
+export const defaultLocale: Locale = "ru";
 
 export const translations = {
   ru: {
@@ -29,7 +29,8 @@ export const translations = {
       submitPending: "Входим...",
       loginError: "Не удалось войти",
       loginErrorFallback: "Проверьте email и пароль",
-      notModerator: "Этот аккаунт не является модератором — вход в панель закрыт",
+      notModerator:
+        "Этот аккаунт не является модератором — вход в панель закрыт",
     },
     panel: {
       title: "Панель модератора",
@@ -45,8 +46,7 @@ export const translations = {
     },
     sections: {
       questsTitle: "Все квесты",
-      questsDescription:
-        "Все квесты на платформе и их текущее состояние",
+      questsDescription: "Все квесты на платформе и их текущее состояние",
       reportsTitle: "Жалобы пользователей",
       reportsDescription:
         "Рассмотрите жалобы, проверьте контент и примите решение по каждой заявке",
@@ -596,6 +596,6 @@ export const translations = {
     },
     language: { ru: "RU", en: "EN", fr: "FR", hi: "HI" },
   },
-} as const
+} as const;
 
-export type TranslationTree = (typeof translations)[Locale]
+export type TranslationTree = (typeof translations)[Locale];

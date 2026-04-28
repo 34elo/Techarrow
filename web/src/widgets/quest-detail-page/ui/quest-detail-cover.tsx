@@ -2,10 +2,7 @@
 
 import Image from "next/image";
 
-import {
-  getQuestCoverImageUrl,
-  type QuestDetail,
-} from "@/entities/quest";
+import { getQuestCoverImageUrl, type QuestDetail } from "@/entities/quest";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 
 type QuestDetailCoverProps = {

@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { type FormEvent, useState } from "react"
-import { toast } from "sonner"
+import { type FormEvent, useState } from "react";
+import { toast } from "sonner";
 
-import { useTranslations } from "@/shared/i18n/i18n-provider"
-import { Button } from "@/shared/ui/button"
+import { useTranslations } from "@/shared/i18n/i18n-provider";
+import { Button } from "@/shared/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,15 +12,15 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/shared/ui/dialog"
-import { Label } from "@/shared/ui/label"
+} from "@/shared/ui/dialog";
+import { Label } from "@/shared/ui/label";
 
 type RejectReasonDialogProps = {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  questTitle: string
-  onConfirm?: (reason: string) => void | Promise<void>
-}
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  questTitle: string;
+  onConfirm?: (reason: string) => void | Promise<void>;
+};
 
 export function RejectReasonDialog({
   open,
@@ -28,47 +28,47 @@ export function RejectReasonDialog({
   questTitle,
   onConfirm,
 }: RejectReasonDialogProps) {
-  const { t } = useTranslations()
-  const [reason, setReason] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { t } = useTranslations();
+  const [reason, setReason] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const normalizedReason = reason.trim()
+    event.preventDefault();
+    const normalizedReason = reason.trim();
 
     if (!normalizedReason) {
-      toast.error(t("rejectDialog.requiredError"))
-      return
+      toast.error(t("rejectDialog.requiredError"));
+      return;
     }
 
     if (normalizedReason.length < 10) {
       toast.error(t("rejectDialog.tooShortTitle"), {
         description: t("rejectDialog.tooShortDescription"),
-      })
-      return
+      });
+      return;
     }
 
     try {
-      setIsSubmitting(true)
-      await onConfirm?.(normalizedReason)
-      onOpenChange(false)
+      setIsSubmitting(true);
+      await onConfirm?.(normalizedReason);
+      onOpenChange(false);
     } catch {
       toast.error(t("toasts.rejectFailed"), {
         description: t("toasts.tryAgain"),
-      })
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <Dialog
       open={open}
       onOpenChange={(nextOpen) => {
-        onOpenChange(nextOpen)
+        onOpenChange(nextOpen);
         if (!nextOpen) {
-          setReason("")
-          setIsSubmitting(false)
+          setReason("");
+          setIsSubmitting(false);
         }
       }}
     >
@@ -82,12 +82,14 @@ export function RejectReasonDialog({
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
-            <Label htmlFor="reject-reason">{t("rejectDialog.reasonLabel")}</Label>
+            <Label htmlFor="reject-reason">
+              {t("rejectDialog.reasonLabel")}
+            </Label>
             <textarea
               id="reject-reason"
               value={reason}
               onChange={(event) => {
-                setReason(event.target.value)
+                setReason(event.target.value);
               }}
               rows={4}
               placeholder={t("rejectDialog.reasonPlaceholder")}
@@ -105,11 +107,13 @@ export function RejectReasonDialog({
               {t("common.cancel")}
             </Button>
             <Button type="submit" variant="destructive" disabled={isSubmitting}>
-              {isSubmitting ? t("rejectDialog.submitPending") : t("common.reject")}
+              {isSubmitting
+                ? t("rejectDialog.submitPending")
+                : t("common.reject")}
             </Button>
           </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

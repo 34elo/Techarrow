@@ -1,12 +1,12 @@
-import { QuestCard, type QuestCardData } from "@/shared/ui/quest-card"
-import type { ReactNode } from "react"
+import { QuestCard, type QuestCardData } from "@/shared/ui/quest-card";
+import type { ReactNode } from "react";
 
 type QuestCardsListProps<T extends QuestCardData> = {
-  quests: T[]
-  onApprove?: (quest: T) => void
-  onReject?: (quest: T) => void
-  renderCard?: (quest: T, index: number) => ReactNode
-}
+  quests: T[];
+  onApprove?: (quest: T) => void;
+  onReject?: (quest: T) => void;
+  renderCard?: (quest: T, index: number) => ReactNode;
+};
 
 export function QuestCardsList<T extends QuestCardData>({
   quests,
@@ -26,8 +26,8 @@ export function QuestCardsList<T extends QuestCardData>({
             onApprove={onApprove ? (item) => onApprove(item as T) : undefined}
             onReject={onReject ? (item) => onReject(item as T) : undefined}
           />
-        )
+        ),
       )}
     </div>
-  )
+  );
 }

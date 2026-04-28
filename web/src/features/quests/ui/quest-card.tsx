@@ -27,6 +27,7 @@ type QuestCardProps = {
   quest: Quest;
   className?: string;
   showStatus?: boolean;
+  actions?: React.ReactNode;
 };
 
 const STATUS_VARIANT: Record<
@@ -39,7 +40,12 @@ const STATUS_VARIANT: Record<
   archived: "outline",
 };
 
-export function QuestCard({ quest, className, showStatus }: QuestCardProps) {
+export function QuestCard({
+  quest,
+  className,
+  showStatus,
+  actions,
+}: QuestCardProps) {
   const { t } = useTranslations();
   const { city, district } = parseLocation(quest.location);
   const cover = getQuestCoverImageUrl(quest);
@@ -65,7 +71,8 @@ export function QuestCard({ quest, className, showStatus }: QuestCardProps) {
             className="object-cover"
             unoptimized
           />
-          <div className="absolute right-2 top-2">
+          <div className="absolute right-2 top-2 flex items-center gap-1.5">
+            {actions}
             <FavoriteButton questId={quest.id} className="bg-card/80" />
           </div>
           {showStatus || isPassed ? (

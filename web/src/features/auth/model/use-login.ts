@@ -2,7 +2,11 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { authService, type LoginPayload, type TokenPair } from "../api/auth-service";
+import {
+  authService,
+  type LoginPayload,
+  type TokenPair,
+} from "../api/auth-service";
 import { useAuthStore } from "@/shared/store/auth-store";
 import { queryKeys } from "@/shared/lib/react-query/query-keys";
 import { ApiError } from "@/shared/api";

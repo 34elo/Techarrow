@@ -274,9 +274,7 @@ function CheckpointDialogBody({
               zoom={13}
               pickerMarker={state.coords}
               userLocation={geolocation.coords}
-              onMapClick={(coords) =>
-                setState((prev) => ({ ...prev, coords }))
-              }
+              onMapClick={(coords) => setState((prev) => ({ ...prev, coords }))}
               onPickerMove={(coords) =>
                 setState((prev) => ({ ...prev, coords }))
               }

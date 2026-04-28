@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 
 export default function AccessDeniedPage() {
   return (
@@ -18,5 +18,5 @@ export default function AccessDeniedPage() {
         </Link>
       </div>
     </main>
-  )
+  );
 }

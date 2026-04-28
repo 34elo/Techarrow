@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { authService } from "../api/auth-service"
-import { useAuthStore } from "@/shared/store/auth-store"
+import { authService } from "../api/auth-service";
+import { useAuthStore } from "@/shared/store/auth-store";
 
 export function useLogout() {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation<void, Error, void>({
     mutationFn: async () => {
-      const refreshToken = useAuthStore.getState().refreshToken
-      if (!refreshToken) return
+      const refreshToken = useAuthStore.getState().refreshToken;
+      if (!refreshToken) return;
       try {
-        await authService.logout(refreshToken)
+        await authService.logout(refreshToken);
       } catch {}
     },
     onSettled: () => {
-      useAuthStore.getState().clearAuth()
-      queryClient.clear()
+      useAuthStore.getState().clearAuth();
+      queryClient.clear();
     },
-  })
+  });
 }

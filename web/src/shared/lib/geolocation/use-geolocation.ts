@@ -43,8 +43,13 @@ function readError(error: GeolocationPositionError): string {
 export function useGeolocation(
   options: UseGeolocationOptions = {},
 ): GeolocationState {
-  const { watch = false, auto = false, enableHighAccuracy = true, maximumAge, timeout } =
-    options;
+  const {
+    watch = false,
+    auto = false,
+    enableHighAccuracy = true,
+    maximumAge,
+    timeout,
+  } = options;
 
   const isSupported =
     typeof navigator !== "undefined" && "geolocation" in navigator;
@@ -93,7 +98,11 @@ export function useGeolocation(
           opts,
         );
       } else {
-        navigator.geolocation.getCurrentPosition(handleSuccess, handleError, opts);
+        navigator.geolocation.getCurrentPosition(
+          handleSuccess,
+          handleError,
+          opts,
+        );
       }
     },
     [isSupported, watch, enableHighAccuracy, maximumAge, timeout],

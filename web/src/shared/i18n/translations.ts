@@ -203,6 +203,10 @@ export const translations = {
       completedTitle: "Команда прошла квест!",
       completedBadge: "Квест пройден",
       openTeam: "Открыть команду",
+      toastStarting: "Все готовы! Старт через несколько секунд.",
+      toastInProgress: "Поехали! Чекпоинты открыты.",
+      toastCompleted: "Команда прошла квест!",
+      toastTeammateSolved: "{name} решил «{title}»",
     },
     favorites: {
       title: "Избранное",
@@ -224,6 +228,20 @@ export const translations = {
         "Вы пока не создали ни одного квеста. Соберите свой маршрут с чекпоинтами.",
       emptyFavorites:
         "Список пуст. Добавляйте квесты в избранное из ленты или со страницы квеста.",
+      actionsLabel: "Действия с квестом",
+      archive: "Архивировать",
+      restore: "Опубликовать снова",
+      delete: "Удалить",
+      deleting: "Удаляем...",
+      archivedToast: "Квест перенесён в архив",
+      archiveFailed: "Не удалось архивировать квест",
+      restoredToast: "Квест опубликован",
+      restoreFailed: "Не удалось опубликовать квест",
+      deletedToast: "Квест удалён",
+      deleteFailed: "Не удалось удалить квест",
+      deleteConfirmTitle: "Удалить квест?",
+      deleteConfirmDescription:
+        "Квест «{title}» будет удалён без возможности восстановления.",
     },
     history: {
       title: "История квестов",
@@ -266,7 +284,8 @@ export const translations = {
       nearMe: "Около меня",
       nearActive: "Около меня (1 км)",
       nearClear: "Снять",
-      nearHint: "Использует геопозицию из браузера, радиус задан сервером (1 км).",
+      nearHint:
+        "Использует геопозицию из браузера, радиус задан сервером (1 км).",
       nearMeApplied: "Лента отфильтрована вокруг вас",
     },
     questCreate: {
@@ -675,6 +694,10 @@ export const translations = {
       completedTitle: "Team finished the quest!",
       completedBadge: "Quest completed",
       openTeam: "Open team",
+      toastStarting: "Everyone's ready! Starting in a few seconds.",
+      toastInProgress: "Lift-off! Checkpoints are open.",
+      toastCompleted: "Team finished the quest!",
+      toastTeammateSolved: "{name} solved «{title}»",
     },
     myQuests: {
       title: "My quests",
@@ -686,6 +709,19 @@ export const translations = {
         "You haven't created any quests yet. Design your own route with checkpoints.",
       emptyFavorites:
         "Empty. Add quests to favorites from the feed or a quest page.",
+      actionsLabel: "Quest actions",
+      archive: "Archive",
+      restore: "Publish again",
+      delete: "Delete",
+      deleting: "Deleting...",
+      archivedToast: "Quest archived",
+      archiveFailed: "Failed to archive quest",
+      restoredToast: "Quest published",
+      restoreFailed: "Failed to publish quest",
+      deletedToast: "Quest deleted",
+      deleteFailed: "Failed to delete quest",
+      deleteConfirmTitle: "Delete this quest?",
+      deleteConfirmDescription: "Quest «{title}» will be permanently removed.",
     },
     favorites: {
       title: "Favorites",
@@ -694,8 +730,7 @@ export const translations = {
       add: "Add to favorites",
       remove: "Remove from favorites",
       toggleFailed: "Failed to update favorites",
-      empty:
-        "Empty. Add quests to favorites from the feed or the quest page.",
+      empty: "Empty. Add quests to favorites from the feed or the quest page.",
     },
     history: {
       title: "Quest history",
@@ -736,7 +771,8 @@ export const translations = {
       nearMe: "Near me",
       nearActive: "Near me (1 km)",
       nearClear: "Clear",
-      nearHint: "Uses your browser geolocation, radius is fixed by the server (1 km).",
+      nearHint:
+        "Uses your browser geolocation, radius is fixed by the server (1 km).",
       nearMeApplied: "Feed filtered around you",
     },
     questCreate: {
@@ -913,8 +949,7 @@ export const translations = {
       loginTitle: "Sign in to Quests",
       loginDescription: "Enter your email and password to continue",
       registerTitle: "Sign up",
-      registerDescription:
-        "Create an account to start playing quests",
+      registerDescription: "Create an account to start playing quests",
       emailLabel: "Email",
       passwordLabel: "Password",
       usernameLabel: "Username",
@@ -939,8 +974,7 @@ export const translations = {
       notFoundDescription: "Looks like this page doesn't exist.",
       serverErrorCode: "Error 500",
       serverErrorTitle: "Something went wrong",
-      serverErrorDescription:
-        "Try refreshing the page or returning home.",
+      serverErrorDescription: "Try refreshing the page or returning home.",
       accessDeniedCode: "Error 403",
       accessDeniedTitle: "Access denied",
       accessDeniedDescription:
@@ -1072,7 +1106,8 @@ export const translations = {
       solo: "Solo",
       soloDescription: "Les points vont uniquement à vous.",
       team: "Équipe",
-      teamDescription: "Les points vont à votre équipe. Tous voient la progression.",
+      teamDescription:
+        "Les points vont à votre équipe. Tous voient la progression.",
       teamDisabled: "Rejoignez une équipe pour jouer en mode équipe.",
     },
     run: {
@@ -1142,6 +1177,10 @@ export const translations = {
       completedTitle: "L'équipe a terminé la quête !",
       completedBadge: "Quête terminée",
       openTeam: "Ouvrir l'équipe",
+      toastStarting: "Tout le monde est prêt ! Départ dans quelques secondes.",
+      toastInProgress: "C'est parti ! Les étapes sont ouvertes.",
+      toastCompleted: "L'équipe a terminé la quête !",
+      toastTeammateSolved: "{name} a résolu « {title} »",
     },
     favorites: {
       title: "Favoris",
@@ -1150,8 +1189,7 @@ export const translations = {
       add: "Ajouter aux favoris",
       remove: "Retirer des favoris",
       toggleFailed: "Échec de mise à jour des favoris",
-      empty:
-        "Vide. Ajoutez des quêtes depuis le fil ou la page d'une quête.",
+      empty: "Vide. Ajoutez des quêtes depuis le fil ou la page d'une quête.",
     },
     myQuests: {
       title: "Mes quêtes",
@@ -1163,6 +1201,20 @@ export const translations = {
         "Vous n'avez encore créé aucune quête. Concevez votre propre parcours avec des points.",
       emptyFavorites:
         "Vide. Ajoutez des quêtes depuis le fil ou la page d'une quête.",
+      actionsLabel: "Actions sur la quête",
+      archive: "Archiver",
+      restore: "Republier",
+      delete: "Supprimer",
+      deleting: "Suppression...",
+      archivedToast: "Quête archivée",
+      archiveFailed: "Échec de l'archivage",
+      restoredToast: "Quête publiée",
+      restoreFailed: "Échec de la publication",
+      deletedToast: "Quête supprimée",
+      deleteFailed: "Échec de la suppression",
+      deleteConfirmTitle: "Supprimer cette quête ?",
+      deleteConfirmDescription:
+        "La quête « {title} » sera supprimée définitivement.",
     },
     history: {
       title: "Historique des quêtes",
@@ -1203,7 +1255,8 @@ export const translations = {
       nearMe: "Près de moi",
       nearActive: "Près de moi (1 km)",
       nearClear: "Effacer",
-      nearHint: "Utilise la géolocalisation du navigateur, rayon fixé à 1 km côté serveur.",
+      nearHint:
+        "Utilise la géolocalisation du navigateur, rayon fixé à 1 km côté serveur.",
       nearMeApplied: "Liste filtrée autour de vous",
     },
     questCreate: {
@@ -1240,7 +1293,8 @@ export const translations = {
       addCheckpoint: "Ajouter un point",
       noCheckpoints: "Aucun point pour le moment",
       checkpointMinError: "Au moins 3 points de contrôle requis",
-      coverDraftNotice: "Le brouillon retient « {name} » — sélectionnez le fichier à nouveau",
+      coverDraftNotice:
+        "Le brouillon retient « {name} » — sélectionnez le fichier à nouveau",
       draftRestored: "Brouillon de quête restauré",
       draftCleared: "Brouillon effacé",
       clearDraft: "Effacer le brouillon",
@@ -1276,7 +1330,8 @@ export const translations = {
       hintLabel: "Indice (optionnel)",
       pointRulesLabel: "Règles du point (optionnel)",
       coordsLabel: "Coordonnées",
-      pickHint: "Cliquez sur la carte pour placer un marqueur. Vous pouvez le déplacer.",
+      pickHint:
+        "Cliquez sur la carte pour placer un marqueur. Vous pouvez le déplacer.",
       saveCheckpoint: "Enregistrer le point",
       saveChanges: "Enregistrer les modifications",
       editCheckpoint: "Modifier",
@@ -1337,7 +1392,8 @@ export const translations = {
       joinButton: "Rejoindre",
       joiningButton: "Rejoindre...",
       scanQrButton: "Scanner QR",
-      scanQrPlaceholder: "Scanner non disponible — saisissez le code à la main.",
+      scanQrPlaceholder:
+        "Scanner non disponible — saisissez le code à la main.",
       prefilledFromUrl:
         "Code pré-rempli depuis le lien — appuyez sur « Rejoindre ».",
       createSuccess: "Équipe créée",
@@ -1502,16 +1558,14 @@ export const translations = {
         one: "{count} चेकपॉइंट",
         other: "{count} चेकपॉइंट",
       },
-      checkpointsHintLocked:
-        "क्वेस्ट शुरू करने के बाद बिंदु क्रमशः खुलेंगे।",
+      checkpointsHintLocked: "क्वेस्ट शुरू करने के बाद बिंदु क्रमशः खुलेंगे।",
       checkpointsHintActive:
         "वर्तमान चेकपॉइंट हाइलाइटेड है। पार किए गए पर निशान है।",
       checkpointLocked: "चेकपॉइंट {index} (बंद)",
       mapHeading: "मानचित्र पर चेकपॉइंट्स",
       report: "रिपोर्ट करें",
       reportTitle: "इस क्वेस्ट की रिपोर्ट करें",
-      reportDescription:
-        "बताएं क्या समस्या है। मॉडरेटर आपकी रिपोर्ट देखेंगे।",
+      reportDescription: "बताएं क्या समस्या है। मॉडरेटर आपकी रिपोर्ट देखेंगे।",
       reportReasonLabel: "कारण",
       reportReasonPlaceholder: "कम से कम 5 अक्षर",
       reportSubmit: "रिपोर्ट भेजें",
@@ -1610,6 +1664,10 @@ export const translations = {
       completedTitle: "टीम ने क्वेस्ट पूरा किया!",
       completedBadge: "क्वेस्ट पूरा",
       openTeam: "टीम खोलें",
+      toastStarting: "सब तैयार हैं! कुछ सेकंड में शुरू होगा।",
+      toastInProgress: "शुरू हो गया! चेकपॉइंट खुले हैं।",
+      toastCompleted: "टीम ने क्वेस्ट पूरा किया!",
+      toastTeammateSolved: "{name} ने «{title}» हल किया",
     },
     favorites: {
       title: "पसंदीदा",
@@ -1628,8 +1686,20 @@ export const translations = {
       tabFavorites: "पसंदीदा",
       emptyCreated:
         "आपने अभी कोई क्वेस्ट नहीं बनाया। चेकपॉइंट के साथ अपना मार्ग बनाएँ।",
-      emptyFavorites:
-        "खाली। फ़ीड या क्वेस्ट पेज से पसंदीदा जोड़ें।",
+      emptyFavorites: "खाली। फ़ीड या क्वेस्ट पेज से पसंदीदा जोड़ें।",
+      actionsLabel: "क्वेस्ट क्रियाएँ",
+      archive: "संग्रह",
+      restore: "फिर से प्रकाशित करें",
+      delete: "हटाएँ",
+      deleting: "हटा रहे हैं...",
+      archivedToast: "क्वेस्ट संग्रहीत",
+      archiveFailed: "संग्रह नहीं हो सका",
+      restoredToast: "क्वेस्ट प्रकाशित",
+      restoreFailed: "प्रकाशन नहीं हो सका",
+      deletedToast: "क्वेस्ट हटाया गया",
+      deleteFailed: "हटाया नहीं जा सका",
+      deleteConfirmTitle: "क्या क्वेस्ट हटाएँ?",
+      deleteConfirmDescription: "क्वेस्ट «{title}» स्थायी रूप से हटा दी जाएगी।",
     },
     history: {
       title: "क्वेस्ट इतिहास",
@@ -1742,7 +1812,8 @@ export const translations = {
       hintLabel: "संकेत (वैकल्पिक)",
       pointRulesLabel: "बिंदु के नियम (वैकल्पिक)",
       coordsLabel: "निर्देशांक",
-      pickHint: "मानचित्र पर क्लिक करके मार्कर रखें। मार्कर खींचा भी जा सकता है।",
+      pickHint:
+        "मानचित्र पर क्लिक करके मार्कर रखें। मार्कर खींचा भी जा सकता है।",
       saveCheckpoint: "चेकपॉइंट सहेजें",
       saveChanges: "बदलाव सहेजें",
       editCheckpoint: "संपादित करें",
@@ -1778,8 +1849,7 @@ export const translations = {
       copiedCode: "कोड कॉपी हो गया",
       showQr: "QR दिखाएँ",
       qrTitle: "«{name}» के लिए आमंत्रण QR",
-      qrDescription:
-        "इस कोड को स्कैन करवाकर तुरंत टीम में शामिल करें।",
+      qrDescription: "इस कोड को स्कैन करवाकर तुरंत टीम में शामिल करें।",
       qrHint: "QR में टीम कोड है — स्कैन करें या कोड हाथ से दर्ज करें।",
       qrDownload: "PNG डाउनलोड",
       leaveTeam: "टीम छोड़ें",
@@ -1804,8 +1874,7 @@ export const translations = {
       joiningButton: "शामिल हो रहे हैं...",
       scanQrButton: "QR स्कैन करें",
       scanQrPlaceholder: "स्कैनर अभी जुड़ा नहीं है — कोड हाथ से दर्ज करें।",
-      prefilledFromUrl:
-        "कोड आमंत्रण लिंक से भरा गया है — «शामिल हों» दबाएँ।",
+      prefilledFromUrl: "कोड आमंत्रण लिंक से भरा गया है — «शामिल हों» दबाएँ।",
       createSuccess: "टीम बन गई",
       createFailed: "टीम बनाने में विफल",
       joinSuccess: "आप टीम में शामिल हो गए",

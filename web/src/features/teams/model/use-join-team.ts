@@ -2,10 +2,7 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import {
-  teamsService,
-  type JoinTeamPayload,
-} from "../api/teams-service";
+import { teamsService, type JoinTeamPayload } from "../api/teams-service";
 import { queryKeys } from "@/shared/lib/react-query/query-keys";
 import type { ApiError } from "@/shared/api";
 import type { Team } from "@/entities/team";

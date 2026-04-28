@@ -11,8 +11,9 @@ import type {
   TeamQuestRunProgress,
 } from "@/entities/team-quest-run";
 
-const FAST_POLL_MS = 1500;
-const SLOW_POLL_MS = 8000;
+const READY_POLL_MS = 1000;
+const RUN_POLL_MS = 2000;
+const IDLE_POLL_MS = 10_000;
 
 export function useActiveTeamQuestRun(options?: { poll?: boolean }) {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -31,14 +32,15 @@ export function useActiveTeamQuestRun(options?: { poll?: boolean }) {
       }
     },
     enabled: isAuthenticated,
-    staleTime: 1000,
+    staleTime: 500,
+    refetchOnWindowFocus: true,
     refetchInterval: (query) => {
       if (!poll) return false;
       const data = query.state.data;
-      if (!data) return SLOW_POLL_MS;
+      if (!data) return IDLE_POLL_MS;
       if (data.status === "completed") return false;
-      if (data.status === "in_progress") return SLOW_POLL_MS;
-      return FAST_POLL_MS;
+      if (data.status === "in_progress") return RUN_POLL_MS;
+      return READY_POLL_MS;
     },
     refetchIntervalInBackground: false,
   });

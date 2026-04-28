@@ -41,9 +41,7 @@ export default function RegisterPage() {
     event.preventDefault();
 
     if (!isBirthdateInAgeRange(birthdate)) {
-      toast.error(
-        t("auth.ageInvalid", { min: MIN_AGE, max: MAX_AGE }),
-      );
+      toast.error(t("auth.ageInvalid", { min: MIN_AGE, max: MAX_AGE }));
       return;
     }
 
@@ -129,7 +127,11 @@ export default function RegisterPage() {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col gap-3">
-          <Button type="submit" className="w-full" disabled={register.isPending}>
+          <Button
+            type="submit"
+            className="w-full"
+            disabled={register.isPending}
+          >
             {register.isPending
               ? t("auth.submitRegisterPending")
               : t("auth.submitRegister")}

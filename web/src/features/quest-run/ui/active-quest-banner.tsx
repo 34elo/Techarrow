@@ -131,4 +131,3 @@ export function ActiveQuestBanner({ className }: ActiveQuestBannerProps) {
     </div>
   );
 }
-

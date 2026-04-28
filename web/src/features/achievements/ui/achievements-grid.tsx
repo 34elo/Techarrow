@@ -95,7 +95,9 @@ function AchievementMedia({
     <div
       className={cn(
         "relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full",
-        unlocked ? "bg-primary/15 text-primary" : "bg-muted text-muted-foreground",
+        unlocked
+          ? "bg-primary/15 text-primary"
+          : "bg-muted text-muted-foreground",
       )}
     >
       {imageUrl ? (

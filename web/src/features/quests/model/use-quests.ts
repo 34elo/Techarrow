@@ -3,10 +3,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 
-import {
-  questsService,
-  type QuestFilters,
-} from "../api/quests-service";
+import { questsService, type QuestFilters } from "../api/quests-service";
 import { queryKeys } from "@/shared/lib/react-query/query-keys";
 import { DEFAULT_PAGE_SIZE, getNextOffset } from "@/shared/api";
 import type { ApiError, Page } from "@/shared/api";

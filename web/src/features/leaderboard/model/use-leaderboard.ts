@@ -7,7 +7,10 @@ import {
   leaderboardService,
   type RatingPage,
 } from "../api/leaderboard-service";
-import { queryKeys, type RatingScope } from "@/shared/lib/react-query/query-keys";
+import {
+  queryKeys,
+  type RatingScope,
+} from "@/shared/lib/react-query/query-keys";
 import { DEFAULT_PAGE_SIZE, getNextOffset } from "@/shared/api";
 import type { ApiError } from "@/shared/api";
 import { useAuthStore } from "@/shared/store/auth-store";

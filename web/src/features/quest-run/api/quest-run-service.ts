@@ -15,9 +15,12 @@ export type SubmitAnswerPayload = {
 
 export const questRunService = {
   async start(payload: StartQuestRunPayload): Promise<QuestRunProgress> {
-    const { data } = await httpClient.post<QuestRunProgress>("/api/quest-runs", {
-      quest_id: payload.questId,
-    });
+    const { data } = await httpClient.post<QuestRunProgress>(
+      "/api/quest-runs",
+      {
+        quest_id: payload.questId,
+      },
+    );
     return data;
   },
 

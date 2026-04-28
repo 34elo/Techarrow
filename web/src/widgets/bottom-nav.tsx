@@ -1,6 +1,12 @@
 "use client";
 
-import { BookmarkCheck, Compass, Trophy, UserRound, UsersRound } from "lucide-react";
+import {
+  BookmarkCheck,
+  Compass,
+  Trophy,
+  UserRound,
+  UsersRound,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ComponentType, SVGProps } from "react";
@@ -27,7 +33,8 @@ const navItems: NavItem[] = [
     labelKey: "nav.myQuests",
     icon: BookmarkCheck,
     match: (pathname) =>
-      pathname.startsWith("/quests/my") || pathname.startsWith("/quests/favorites"),
+      pathname.startsWith("/quests/my") ||
+      pathname.startsWith("/quests/favorites"),
   },
   {
     href: "/leaderboard",

@@ -72,7 +72,8 @@ export function RunCheckpointCard({
           <p className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
             <MapPin className="size-3" aria-hidden />
             <span className="font-mono tabular-nums">
-              {checkpoint.latitude.toFixed(5)}°, {checkpoint.longitude.toFixed(5)}°
+              {checkpoint.latitude.toFixed(5)}°,{" "}
+              {checkpoint.longitude.toFixed(5)}°
             </span>
           </p>
         </div>
@@ -86,7 +87,9 @@ export function RunCheckpointCard({
             <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-foreground/80">
               {t("run.pointRules")}
             </p>
-            <p className="whitespace-pre-wrap break-words">{checkpoint.point_rules}</p>
+            <p className="whitespace-pre-wrap break-words">
+              {checkpoint.point_rules}
+            </p>
           </div>
         ) : null}
 

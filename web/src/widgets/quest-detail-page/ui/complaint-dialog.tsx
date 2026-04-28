@@ -60,11 +60,7 @@ export function ComplaintDialog({ questId }: ComplaintDialogProps) {
         if (!mutation.isPending) setOpen(value);
       }}
     >
-      <Button
-        type="button"
-        variant="outline"
-        onClick={() => setOpen(true)}
-      >
+      <Button type="button" variant="outline" onClick={() => setOpen(true)}>
         <Flag />
         {t("questDetail.report")}
       </Button>
@@ -103,9 +99,7 @@ export function ComplaintDialog({ questId }: ComplaintDialogProps) {
             </Button>
             <Button
               type="submit"
-              disabled={
-                mutation.isPending || reason.trim().length < REASON_MIN
-              }
+              disabled={mutation.isPending || reason.trim().length < REASON_MIN}
             >
               {mutation.isPending
                 ? t("questDetail.reportSubmitting")

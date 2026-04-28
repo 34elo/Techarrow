@@ -10,11 +10,7 @@ import { cn } from "@/shared/lib/classnames";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/shared/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
 
 export type QuestFeedFilterValues = {
   city: string;
@@ -44,10 +40,7 @@ const DIFFICULTY_GROUPS: DifficultyGroup[] = [
   { id: "pro", values: [4, 5], labelKey: "filters.difficultyPro" },
 ];
 
-function isGroupActive(
-  group: DifficultyGroup,
-  selected: number[],
-): boolean {
+function isGroupActive(group: DifficultyGroup, selected: number[]): boolean {
   return group.values.every((value) => selected.includes(value));
 }
 
@@ -158,7 +151,9 @@ export function QuestFeedFilters({ value, onChange }: QuestFeedFiltersProps) {
             id="filter-city"
             value={value.city}
             placeholder={t("filters.cityPlaceholder")}
-            onChange={(event) => onChange({ ...value, city: event.target.value })}
+            onChange={(event) =>
+              onChange({ ...value, city: event.target.value })
+            }
           />
         </div>
 
@@ -174,7 +169,7 @@ export function QuestFeedFilters({ value, onChange }: QuestFeedFiltersProps) {
                   onClick={() => handleToggleDifficultyGroup(group)}
                   aria-pressed={active}
                   className={cn(
-                    "rounded-xl border px-3 py-2 text-left text-sm font-medium transition-colors",
+                    "rounded-xl border px-3 py-1.5 text-left text-xs font-medium transition-colors",
                     active
                       ? "border-primary bg-primary text-primary-foreground"
                       : "border-border bg-card text-card-foreground hover:border-primary/40",

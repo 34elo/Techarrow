@@ -30,9 +30,7 @@ export function TeamRunSummaryCard({ run }: TeamRunSummaryCardProps) {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-2">
           <Button asChild variant="outline">
-            <Link href={`/quests/${run.quest_id}`}>
-              {t("run.backToQuest")}
-            </Link>
+            <Link href={`/quests/${run.quest_id}`}>{t("run.backToQuest")}</Link>
           </Button>
           <Button asChild>
             <Link href="/team">

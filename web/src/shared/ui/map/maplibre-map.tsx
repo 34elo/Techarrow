@@ -168,7 +168,10 @@ export function MapView({
   const markerKey = useMemo(
     () =>
       (markers ?? [])
-        .map((m) => `${m.id}:${m.lat.toFixed(5)}:${m.lng.toFixed(5)}:${m.variant ?? "default"}:${m.popupHtml ?? ""}`)
+        .map(
+          (m) =>
+            `${m.id}:${m.lat.toFixed(5)}:${m.lng.toFixed(5)}:${m.variant ?? "default"}:${m.popupHtml ?? ""}`,
+        )
         .join("|"),
     [markers],
   );
@@ -189,7 +192,10 @@ export function MapView({
         attributionControl: { compact: true },
       });
 
-      map.addControl(new maplibre.NavigationControl({ showCompass: false }), "top-right");
+      map.addControl(
+        new maplibre.NavigationControl({ showCompass: false }),
+        "top-right",
+      );
 
       map.on("click", (event) => {
         onMapClickRef.current?.({

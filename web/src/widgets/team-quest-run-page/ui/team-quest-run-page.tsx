@@ -5,7 +5,10 @@ import { useParams } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
 import { useQuestDetail } from "@/features/quests";
-import { useActiveTeamQuestRun } from "@/features/team-quest-run";
+import {
+  useActiveTeamQuestRun,
+  useTeamRunNotifications,
+} from "@/features/team-quest-run";
 import { useMyTeam } from "@/features/teams";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { Button } from "@/shared/ui/button";
@@ -31,6 +34,8 @@ export function TeamQuestRunPage() {
   const run = runQuery.data;
   const quest = questQuery.data;
   const team = teamQuery.data;
+
+  useTeamRunNotifications(run, team);
 
   if (runQuery.isLoading || questQuery.isLoading) {
     return (
@@ -76,9 +81,7 @@ export function TeamQuestRunPage() {
     return (
       <div className="space-y-4">
         {backButton}
-        <h1 className="text-2xl font-semibold tracking-tight">
-          {quest.title}
-        </h1>
+        <h1 className="text-2xl font-semibold tracking-tight">{quest.title}</h1>
         <TeamReadinessCard
           questId={questId}
           questTitle={quest.title}
@@ -93,9 +96,7 @@ export function TeamQuestRunPage() {
     return (
       <div className="space-y-4">
         {backButton}
-        <h1 className="text-2xl font-semibold tracking-tight">
-          {quest.title}
-        </h1>
+        <h1 className="text-2xl font-semibold tracking-tight">{quest.title}</h1>
         <TeamCountdownCard startsAt={run.starts_at} />
         <TeamReadinessCard
           questId={questId}

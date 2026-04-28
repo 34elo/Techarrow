@@ -31,14 +31,16 @@ export function RunMapCard({ run, quest }: RunMapCardProps) {
   const { coords: userCoords } = useGeolocation({ watch: true, auto: true });
 
   const markers = useMemo<MapMarkerData[]>(() => {
-    const items: MapMarkerData[] = run.previous_checkpoints.map((cp, index) => ({
-      id: `passed-${cp.id}`,
-      lat: cp.latitude,
-      lng: cp.longitude,
-      variant: "passed",
-      label: String(index + 1),
-      popupHtml: `<div style="font-weight:600">${index + 1}. ${escapeHtml(cp.title)}</div>`,
-    }));
+    const items: MapMarkerData[] = run.previous_checkpoints.map(
+      (cp, index) => ({
+        id: `passed-${cp.id}`,
+        lat: cp.latitude,
+        lng: cp.longitude,
+        variant: "passed",
+        label: String(index + 1),
+        popupHtml: `<div style="font-weight:600">${index + 1}. ${escapeHtml(cp.title)}</div>`,
+      }),
+    );
 
     if (run.current_checkpoint) {
       const stepNumber = run.current_step_index + 1;
@@ -53,7 +55,11 @@ export function RunMapCard({ run, quest }: RunMapCardProps) {
     }
 
     return items;
-  }, [run.previous_checkpoints, run.current_checkpoint, run.current_step_index]);
+  }, [
+    run.previous_checkpoints,
+    run.current_checkpoint,
+    run.current_step_index,
+  ]);
 
   const center = useMemo(() => {
     if (run.current_checkpoint) {

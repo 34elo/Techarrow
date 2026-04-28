@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { Loader2, Rocket } from "lucide-react";
 
 import { useTranslations } from "@/shared/i18n/i18n-provider";
+import { queryKeys } from "@/shared/lib/react-query/query-keys";
 import { Badge } from "@/shared/ui/badge";
 import { Card, CardContent } from "@/shared/ui/card";
 
@@ -13,7 +15,9 @@ type TeamCountdownCardProps = {
 
 export function TeamCountdownCard({ startsAt }: TeamCountdownCardProps) {
   const { t } = useTranslations();
+  const queryClient = useQueryClient();
   const [now, setNow] = useState<number | null>(null);
+  const advancedRef = useRef(false);
 
   useEffect(() => {
     setNow(Date.now());
@@ -26,6 +30,15 @@ export function TeamCountdownCard({ startsAt }: TeamCountdownCardProps) {
     startsAtMs && now !== null
       ? Math.max(0, Math.ceil((startsAtMs - now) / 1000))
       : null;
+
+  useEffect(() => {
+    if (remainingSec === 0 && !advancedRef.current) {
+      advancedRef.current = true;
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.teamQuestRun.active(),
+      });
+    }
+  }, [remainingSec, queryClient]);
 
   return (
     <Card className="border-0 shadow-md">

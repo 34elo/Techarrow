@@ -30,10 +30,7 @@ export function LanguageToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         {locales.map((value) => (
-          <DropdownMenuItem
-            key={value}
-            onClick={() => setLocale(value)}
-          >
+          <DropdownMenuItem key={value} onClick={() => setLocale(value)}>
             {t(`language.${value}`)}
             {locale === value ? " •" : ""}
           </DropdownMenuItem>

@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun } from "lucide-react";
 
-import { useUiStore } from "@/shared/store/ui-store"
-import { Button } from "@/shared/ui/button"
+import { useUiStore } from "@/shared/store/ui-store";
+import { Button } from "@/shared/ui/button";
 
 export function ThemeToggle() {
-  const theme = useUiStore((state) => state.theme)
-  const toggleTheme = useUiStore((state) => state.toggleTheme)
+  const theme = useUiStore((state) => state.theme);
+  const toggleTheme = useUiStore((state) => state.toggleTheme);
 
   return (
     <Button
@@ -17,7 +17,11 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-label="Toggle theme"
     >
-      {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+      {theme === "dark" ? (
+        <Sun className="size-4" />
+      ) : (
+        <Moon className="size-4" />
+      )}
     </Button>
-  )
+  );
 }

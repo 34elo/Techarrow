@@ -27,7 +27,10 @@ export class ApiError extends Error {
 type AuthHandlers = {
   getAccessToken: () => string | null;
   getRefreshToken: () => string | null;
-  onTokensRefreshed: (tokens: { accessToken: string; refreshToken: string }) => void;
+  onTokensRefreshed: (tokens: {
+    accessToken: string;
+    refreshToken: string;
+  }) => void;
   onUnauthorized: () => void;
 };
 
@@ -55,7 +58,9 @@ httpClient.interceptors.request.use((config) => {
   return config;
 });
 
-type RetryableRequestConfig = InternalAxiosRequestConfig & { _retried?: boolean };
+type RetryableRequestConfig = InternalAxiosRequestConfig & {
+  _retried?: boolean;
+};
 
 let refreshPromise: Promise<string> | null = null;
 
@@ -64,7 +69,10 @@ async function refreshAccessToken(): Promise<string> {
   const refreshToken = handlers.getRefreshToken();
   if (!refreshToken) throw new Error("No refresh token");
 
-  const { data } = await axios.post<{ access_token: string; refresh_token: string }>(
+  const { data } = await axios.post<{
+    access_token: string;
+    refresh_token: string;
+  }>(
     `${env.apiBaseUrl}/api/auth/refresh`,
     { refresh_token: refreshToken },
     { headers: { "Content-Type": "application/json" } },

@@ -40,10 +40,7 @@ export function EditProfileDialog(props: EditProfileDialogProps) {
   );
 }
 
-function EditProfileDialogBody({
-  user,
-  onOpenChange,
-}: EditProfileDialogProps) {
+function EditProfileDialogBody({ user, onOpenChange }: EditProfileDialogProps) {
   const { t } = useTranslations();
   const updateProfile = useUpdateProfile();
   const [username, setUsername] = useState(user.username);
@@ -80,9 +77,7 @@ function EditProfileDialogBody({
       </DialogHeader>
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="space-y-1.5">
-          <Label htmlFor="profile-username">
-            {t("profile.usernameLabel")}
-          </Label>
+          <Label htmlFor="profile-username">{t("profile.usernameLabel")}</Label>
           <Input
             id="profile-username"
             value={username}

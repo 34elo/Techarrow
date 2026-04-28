@@ -50,7 +50,9 @@ export function StartQuestDialog({
           <DialogTitle>
             {t("startQuest.modeTitle")} — {questTitle}
           </DialogTitle>
-          <DialogDescription>{t("startQuest.modeDescription")}</DialogDescription>
+          <DialogDescription>
+            {t("startQuest.modeDescription")}
+          </DialogDescription>
         </DialogHeader>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <ModeOption
