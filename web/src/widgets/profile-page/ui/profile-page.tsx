@@ -1,6 +1,6 @@
 "use client";
 
-import { History, LogOut } from "lucide-react";
+import { Eye, History, LogOut } from "lucide-react";
 
 import { AchievementsPreview } from "@/features/achievements";
 import { useCurrentUser, useLogout } from "@/features/auth";
@@ -21,6 +21,12 @@ export function ProfilePage() {
       label: t("profile.viewHistory"),
       description: t("profile.viewHistoryHint"),
       href: "/profile/history",
+    },
+    {
+      icon: Eye,
+      label: t("profile.viewRecent"),
+      description: t("profile.viewRecentHint"),
+      href: "/profile/recent",
     },
     {
       icon: LogOut,

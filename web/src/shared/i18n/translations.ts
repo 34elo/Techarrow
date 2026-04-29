@@ -26,7 +26,7 @@ export const translations = {
       show: "Показать",
       hide: "Скрыть",
     },
-    brand: { name: "Квесты" },
+    brand: { name: "ГеоВызов" },
     nav: {
       quests: "Квесты",
       myQuests: "Мои",
@@ -50,6 +50,7 @@ export const translations = {
       byAuthor: "от {author}",
       defaultLocation: "Местоположение",
       noLocation: "Без локации",
+      bestTime: "Рекорд",
     },
     questStatus: {
       on_moderation: "На модерации",
@@ -97,6 +98,7 @@ export const translations = {
         "Текущий чекпоинт подсвечен. Пройденные — отмечены галочкой.",
       checkpointLocked: "Чекпоинт {index} (закрыт)",
       mapHeading: "Чекпоинты на карте",
+      coverFullscreen: "Открыть фото в полный экран",
       report: "Пожаловаться",
       reportTitle: "Жалоба на квест",
       reportDescription:
@@ -126,7 +128,7 @@ export const translations = {
       otherActive: "Сначала завершите или прервите текущий квест",
       modeTitle: "Режим прохождения",
       modeDescription: "Очки начисляются согласно выбранному режиму.",
-      solo: "Соло",
+      solo: "В одиночку",
       soloDescription: "Очки идут только вам.",
       team: "Командой",
       teamDescription: "Очки идут команде. Все участники видят прогресс.",
@@ -224,10 +226,12 @@ export const translations = {
       openList: "Мои квесты",
       tabCreated: "Созданные",
       tabFavorites: "Избранное",
+      tabArchived: "Архив",
       emptyCreated:
         "Вы пока не создали ни одного квеста. Соберите свой маршрут с чекпоинтами.",
       emptyFavorites:
         "Список пуст. Добавляйте квесты в избранное из ленты или со страницы квеста.",
+      emptyArchived: "В архиве пока ничего нет.",
       actionsLabel: "Действия с квестом",
       archive: "Архивировать",
       restore: "Опубликовать снова",
@@ -457,13 +461,15 @@ export const translations = {
       achievementLocked: "Не получено",
       viewHistory: "История прохождений",
       viewHistoryHint: "Все ваши пройденные и прерванные квесты",
+      viewRecent: "История просмотров",
+      viewRecentHint: "Квесты, которые вы недавно открывали",
       viewAchievements: "Достижения",
       viewAchievementsHint: "Награды и прогресс",
       logout: "Выйти",
       logoutPending: "Выходим...",
     },
     auth: {
-      loginTitle: "Вход в Квесты",
+      loginTitle: "Вход в ГеоВызов",
       loginDescription: "Введите email и пароль, чтобы продолжить",
       registerTitle: "Регистрация",
       registerDescription: "Создайте аккаунт, чтобы начать проходить квесты",
@@ -502,6 +508,137 @@ export const translations = {
     achievements: {
       progress: "Получено {unlocked} из {total}",
     },
+    share: {
+      title: "Поделиться",
+      aria: "Поделиться квестом",
+      copied: "Ссылка скопирована",
+      failed: "Не удалось скопировать ссылку",
+    },
+    recent: {
+      title: "Недавно просмотренные",
+      description: "Квесты, которые вы недавно открывали.",
+      empty: "Здесь появятся открытые вами квесты.",
+      clear: "Очистить",
+      cleared: "История просмотров очищена",
+      confirmTitle: "Очистить историю просмотров?",
+      confirmDescription:
+        "История открытых квестов будет удалена с этого устройства.",
+    },
+    guide: {
+      title: "Гид",
+      description: "Короткие подсказки, как пользоваться приложением.",
+      openLink: "Гид",
+      welcome: {
+        title: "Добро пожаловать!",
+        body: "Городские квесты — серия задач на карте. Выбирайте маршрут, проходите чекпоинты и набирайте очки в одиночку или с командой.",
+      },
+      howTo: {
+        title: "Как пользоваться",
+        items: {
+          start: {
+            title: "Начните квест",
+            body: "Откройте ленту, выберите квест и нажмите «Начать».",
+          },
+          checkpoints: {
+            title: "Проходите чекпоинты",
+            body: "Дойдите до точки на карте, введите кодовое слово или выберите ответ.",
+          },
+          team: {
+            title: "Играйте в команде",
+            body: "Создайте команду или войдите по коду — отвечать может любой участник.",
+          },
+          scoring: {
+            title: "Получайте очки",
+            body: "Очки идут в общий и командный рейтинги. За скорость — бонус.",
+          },
+        },
+      },
+      etiquette: {
+        title: "Этикет квестов",
+        items: {
+          respect: "Уважайте локации и не оставляйте мусор.",
+          safety: "Не нарушайте безопасность ради ответа.",
+          others: "Не мешайте другим людям и игрокам.",
+          noDangerous: "Не создавайте опасных или провокационных заданий.",
+        },
+      },
+      tips: {
+        title: "Советы игроку",
+        items: {
+          route: "Планируйте маршрут заранее.",
+          difficulty: "Смотрите сложность перед стартом.",
+          gear: "Берите воду и зарядку.",
+          team: "С командой всегда легче.",
+        },
+      },
+      hints: {
+        title: "Подсказки по прохождению",
+        items: {
+          codeWord: {
+            title: "Кодовое слово",
+            body: "Регистр не важен. Введите слово, на которое намекает место.",
+          },
+          multipleChoice: {
+            title: "Вариант ответа",
+            body: "Выберите единственный правильный из списка.",
+          },
+          stuck: {
+            title: "Если застряли",
+            body: "Откройте подсказку — она появится без штрафа.",
+          },
+        },
+      },
+      safety: {
+        title: "Безопасность",
+        items: {
+          closedZones: "Не заходите в закрытые и приватные зоны.",
+          rules: "Соблюдайте правила локаций и местные нормы.",
+          noRisk: "Не выполняйте опасные действия — ни одно задание этого не стоит.",
+        },
+      },
+      authoring: {
+        title: "Создание квестов",
+        items: {
+          create: {
+            title: "Как создать квест",
+            body: "Заполните название, локацию и сложность. Добавьте минимум 3 чекпоинта на карте.",
+          },
+          checkpointsQuality: {
+            title: "Хорошие чекпоинты",
+            body: "Делайте задания короткими и привязанными к месту. Подсказку пишите мягко.",
+          },
+          difficulty: {
+            title: "Сложность и длительность",
+            body: "Шкала 1–5 субъективная. Прикиньте 10–15 минут на чекпоинт + дорога.",
+          },
+          moderation: {
+            title: "Модерация и архив",
+            body: "После отправки квест уходит на модерацию. Опубликованный можно архивировать.",
+          },
+        },
+      },
+    },
+    landing: {
+      tagline: "Городские квесты с геолокацией",
+      description:
+        "Проходите квесты на улицах, создавайте свои и соревнуйтесь в рейтинге — соло или с командой.",
+      openWeb: "Перейти на сайт",
+      download: "Скачать",
+      features: {
+        geo: {
+          title: "Геолокация",
+          body: "MapLibre + OpenStreetMap. Чекпоинты на карте, проход по координатам.",
+        },
+        team: {
+          title: "Команды",
+          body: "До 6 человек в команде. Любой участник отвечает на чекпоинт.",
+        },
+        create: {
+          title: "Свои квесты",
+          body: "Создайте маршрут с чекпоинтами и отправьте на модерацию.",
+        },
+      },
+    },
     language: { ru: "RU", en: "EN", fr: "FR", hi: "HI" },
   },
   en: {
@@ -526,7 +663,7 @@ export const translations = {
       show: "Show",
       hide: "Hide",
     },
-    brand: { name: "Quests" },
+    brand: { name: "ГеоВызов" },
     nav: {
       quests: "Quests",
       myQuests: "Mine",
@@ -548,6 +685,7 @@ export const translations = {
       byAuthor: "by {author}",
       defaultLocation: "Location",
       noLocation: "No location",
+      bestTime: "Record",
     },
     questStatus: {
       on_moderation: "Under review",
@@ -592,6 +730,7 @@ export const translations = {
         "The current checkpoint is highlighted. Passed ones are marked.",
       checkpointLocked: "Checkpoint {index} (locked)",
       mapHeading: "Checkpoints on the map",
+      coverFullscreen: "Open photo in fullscreen",
       report: "Report",
       reportTitle: "Report this quest",
       reportDescription:
@@ -705,10 +844,12 @@ export const translations = {
       openList: "My quests",
       tabCreated: "Created",
       tabFavorites: "Favorites",
+      tabArchived: "Archived",
       emptyCreated:
         "You haven't created any quests yet. Design your own route with checkpoints.",
       emptyFavorites:
         "Empty. Add quests to favorites from the feed or a quest page.",
+      emptyArchived: "Nothing archived yet.",
       actionsLabel: "Quest actions",
       archive: "Archive",
       restore: "Publish again",
@@ -940,13 +1081,15 @@ export const translations = {
       achievementLocked: "Locked",
       viewHistory: "Run history",
       viewHistoryHint: "All quests you've completed or abandoned",
+      viewRecent: "Recently viewed",
+      viewRecentHint: "Quests you've recently opened",
       viewAchievements: "Achievements",
       viewAchievementsHint: "Awards and progress",
       logout: "Log out",
       logoutPending: "Signing out...",
     },
     auth: {
-      loginTitle: "Sign in to Quests",
+      loginTitle: "Sign in to ГеоВызов",
       loginDescription: "Enter your email and password to continue",
       registerTitle: "Sign up",
       registerDescription: "Create an account to start playing quests",
@@ -984,6 +1127,137 @@ export const translations = {
     achievements: {
       progress: "Unlocked {unlocked} of {total}",
     },
+    share: {
+      title: "Share",
+      aria: "Share this quest",
+      copied: "Link copied",
+      failed: "Failed to copy the link",
+    },
+    recent: {
+      title: "Recently viewed",
+      description: "Quests you've recently opened.",
+      empty: "Quests you open will appear here.",
+      clear: "Clear",
+      cleared: "View history cleared",
+      confirmTitle: "Clear view history?",
+      confirmDescription:
+        "Your recently viewed quests will be removed from this device.",
+    },
+    guide: {
+      title: "Guide",
+      description: "Short tips on how to use the app.",
+      openLink: "Guide",
+      welcome: {
+        title: "Welcome!",
+        body: "City quests are a series of tasks on the map. Pick a route, complete checkpoints and earn points solo or with a team.",
+      },
+      howTo: {
+        title: "How to use",
+        items: {
+          start: {
+            title: "Start a quest",
+            body: "Open the feed, pick a quest and tap Start.",
+          },
+          checkpoints: {
+            title: "Complete checkpoints",
+            body: "Reach the spot on the map, type a code word or pick an answer.",
+          },
+          team: {
+            title: "Play in a team",
+            body: "Create one or join by code — any member can answer.",
+          },
+          scoring: {
+            title: "Earn points",
+            body: "Points go to personal and team leaderboards. Speed gets a bonus.",
+          },
+        },
+      },
+      etiquette: {
+        title: "Quest etiquette",
+        items: {
+          respect: "Respect locations and leave no trace.",
+          safety: "Never trade safety for an answer.",
+          others: "Don't disturb other people or players.",
+          noDangerous: "Don't create dangerous or provocative tasks.",
+        },
+      },
+      tips: {
+        title: "Tips for players",
+        items: {
+          route: "Plan the route in advance.",
+          difficulty: "Check the difficulty first.",
+          gear: "Bring water and a charger.",
+          team: "A team always makes it easier.",
+        },
+      },
+      hints: {
+        title: "Task hints",
+        items: {
+          codeWord: {
+            title: "Code word",
+            body: "Case-insensitive. Type the word the spot suggests.",
+          },
+          multipleChoice: {
+            title: "Multiple choice",
+            body: "Pick the single correct option from the list.",
+          },
+          stuck: {
+            title: "If you're stuck",
+            body: "Open the hint — no penalty.",
+          },
+        },
+      },
+      safety: {
+        title: "Safety",
+        items: {
+          closedZones: "Don't enter closed or private areas.",
+          rules: "Follow location rules and local laws.",
+          noRisk: "Don't take risks — no task is worth it.",
+        },
+      },
+      authoring: {
+        title: "Creating quests",
+        items: {
+          create: {
+            title: "How to create",
+            body: "Fill in title, location and difficulty. Add at least 3 checkpoints on the map.",
+          },
+          checkpointsQuality: {
+            title: "Good checkpoints",
+            body: "Keep tasks short and tied to the place. Word hints gently.",
+          },
+          difficulty: {
+            title: "Difficulty & duration",
+            body: "1–5 is subjective. Estimate 10–15 min per checkpoint plus travel.",
+          },
+          moderation: {
+            title: "Moderation & archive",
+            body: "Submitted quests go to moderation. Published ones can be archived anytime.",
+          },
+        },
+      },
+    },
+    landing: {
+      tagline: "City quests with geolocation",
+      description:
+        "Run quests on real streets, create your own and climb the leaderboard — solo or with a team.",
+      openWeb: "Open the app",
+      download: "Download",
+      features: {
+        geo: {
+          title: "Geolocation",
+          body: "MapLibre + OpenStreetMap. Checkpoints on the map, played by coordinates.",
+        },
+        team: {
+          title: "Teams",
+          body: "Up to 6 people. Any member can answer a checkpoint.",
+        },
+        create: {
+          title: "Your own quests",
+          body: "Build a route with checkpoints and submit it for moderation.",
+        },
+      },
+    },
     language: { ru: "RU", en: "EN", fr: "FR", hi: "HI" },
   },
   fr: {
@@ -1008,7 +1282,7 @@ export const translations = {
       show: "Afficher",
       hide: "Masquer",
     },
-    brand: { name: "Quêtes" },
+    brand: { name: "ГеоВызов" },
     nav: {
       quests: "Quêtes",
       myQuests: "Miennes",
@@ -1030,6 +1304,7 @@ export const translations = {
       byAuthor: "par {author}",
       defaultLocation: "Lieu",
       noLocation: "Sans lieu",
+      bestTime: "Record",
     },
     questStatus: {
       on_moderation: "En modération",
@@ -1074,6 +1349,7 @@ export const translations = {
         "Le point actuel est mis en évidence. Les points franchis sont cochés.",
       checkpointLocked: "Point {index} (verrouillé)",
       mapHeading: "Points sur la carte",
+      coverFullscreen: "Ouvrir la photo en plein écran",
       report: "Signaler",
       reportTitle: "Signaler cette quête",
       reportDescription:
@@ -1197,10 +1473,12 @@ export const translations = {
       openList: "Mes quêtes",
       tabCreated: "Créées",
       tabFavorites: "Favoris",
+      tabArchived: "Archivées",
       emptyCreated:
         "Vous n'avez encore créé aucune quête. Concevez votre propre parcours avec des points.",
       emptyFavorites:
         "Vide. Ajoutez des quêtes depuis le fil ou la page d'une quête.",
+      emptyArchived: "Aucune quête archivée pour le moment.",
       actionsLabel: "Actions sur la quête",
       archive: "Archiver",
       restore: "Republier",
@@ -1429,13 +1707,15 @@ export const translations = {
       achievementLocked: "Verrouillé",
       viewHistory: "Historique",
       viewHistoryHint: "Toutes les quêtes terminées ou abandonnées",
+      viewRecent: "Vues récemment",
+      viewRecentHint: "Quêtes que vous avez ouvertes récemment",
       viewAchievements: "Succès",
       viewAchievementsHint: "Récompenses et progression",
       logout: "Déconnexion",
       logoutPending: "Déconnexion...",
     },
     auth: {
-      loginTitle: "Se connecter aux Quêtes",
+      loginTitle: "Se connecter à ГеоВызов",
       loginDescription: "Saisissez votre e-mail et mot de passe pour continuer",
       registerTitle: "Inscription",
       registerDescription: "Créez un compte pour jouer aux quêtes",
@@ -1474,6 +1754,137 @@ export const translations = {
     achievements: {
       progress: "Débloqués : {unlocked} sur {total}",
     },
+    share: {
+      title: "Partager",
+      aria: "Partager cette quête",
+      copied: "Lien copié",
+      failed: "Impossible de copier le lien",
+    },
+    recent: {
+      title: "Vues récemment",
+      description: "Les quêtes que vous avez ouvertes récemment.",
+      empty: "Les quêtes que vous ouvrez apparaîtront ici.",
+      clear: "Effacer",
+      cleared: "Historique effacé",
+      confirmTitle: "Effacer l'historique ?",
+      confirmDescription:
+        "Vos quêtes vues récemment seront supprimées de cet appareil.",
+    },
+    guide: {
+      title: "Guide",
+      description: "Petits conseils pour utiliser l'application.",
+      openLink: "Guide",
+      welcome: {
+        title: "Bienvenue !",
+        body: "Les quêtes urbaines sont une série de tâches sur la carte. Choisissez un parcours, validez les points de contrôle et gagnez des points en solo ou en équipe.",
+      },
+      howTo: {
+        title: "Comment ça marche",
+        items: {
+          start: {
+            title: "Lancer une quête",
+            body: "Ouvrez le fil, choisissez une quête et appuyez sur Démarrer.",
+          },
+          checkpoints: {
+            title: "Valider les points",
+            body: "Atteignez le point sur la carte, entrez le mot-code ou choisissez une réponse.",
+          },
+          team: {
+            title: "Jouer en équipe",
+            body: "Créez-en une ou rejoignez par code — chacun peut répondre.",
+          },
+          scoring: {
+            title: "Gagner des points",
+            body: "Les points alimentent les classements perso et équipe. Bonus de vitesse.",
+          },
+        },
+      },
+      etiquette: {
+        title: "Étiquette",
+        items: {
+          respect: "Respectez les lieux et ne laissez pas de traces.",
+          safety: "Ne sacrifiez jamais la sécurité pour une réponse.",
+          others: "Ne dérangez pas les passants ni les autres joueurs.",
+          noDangerous: "Pas de tâches dangereuses ou provocantes.",
+        },
+      },
+      tips: {
+        title: "Conseils joueurs",
+        items: {
+          route: "Planifiez l'itinéraire à l'avance.",
+          difficulty: "Vérifiez la difficulté avant de partir.",
+          gear: "Prenez de l'eau et un chargeur.",
+          team: "L'équipe rend tout plus facile.",
+        },
+      },
+      hints: {
+        title: "Astuces de tâches",
+        items: {
+          codeWord: {
+            title: "Mot-code",
+            body: "Casse non sensible. Saisissez le mot suggéré par le lieu.",
+          },
+          multipleChoice: {
+            title: "Choix multiple",
+            body: "Sélectionnez l'unique bonne option.",
+          },
+          stuck: {
+            title: "Bloqué ?",
+            body: "Ouvrez l'indice — sans pénalité.",
+          },
+        },
+      },
+      safety: {
+        title: "Sécurité",
+        items: {
+          closedZones: "N'entrez pas dans des zones fermées ou privées.",
+          rules: "Respectez les règles des lieux et la loi locale.",
+          noRisk: "Ne prenez pas de risques — aucune tâche ne le vaut.",
+        },
+      },
+      authoring: {
+        title: "Créer des quêtes",
+        items: {
+          create: {
+            title: "Comment créer",
+            body: "Renseignez le titre, le lieu et la difficulté. Ajoutez au moins 3 points sur la carte.",
+          },
+          checkpointsQuality: {
+            title: "Bons points de contrôle",
+            body: "Tâches courtes, liées au lieu. Indices rédigés avec bienveillance.",
+          },
+          difficulty: {
+            title: "Difficulté et durée",
+            body: "1–5 reste subjectif. Comptez 10–15 min par point plus le trajet.",
+          },
+          moderation: {
+            title: "Modération et archives",
+            body: "Les quêtes envoyées passent en modération. Une publiée peut être archivée à tout moment.",
+          },
+        },
+      },
+    },
+    landing: {
+      tagline: "Quêtes urbaines avec géolocalisation",
+      description:
+        "Parcourez la ville en quêtes, créez les vôtres et grimpez au classement — en solo ou en équipe.",
+      openWeb: "Ouvrir l'application",
+      download: "Télécharger",
+      features: {
+        geo: {
+          title: "Géolocalisation",
+          body: "MapLibre + OpenStreetMap. Points de contrôle sur la carte, joués aux coordonnées.",
+        },
+        team: {
+          title: "Équipes",
+          body: "Jusqu'à 6 personnes. Chaque membre peut répondre à un point.",
+        },
+        create: {
+          title: "Vos quêtes",
+          body: "Construisez un parcours avec des points et envoyez-le en modération.",
+        },
+      },
+    },
     language: { ru: "RU", en: "EN", fr: "FR", hi: "HI" },
   },
   hi: {
@@ -1498,7 +1909,7 @@ export const translations = {
       show: "दिखाएँ",
       hide: "छिपाएँ",
     },
-    brand: { name: "क्वेस्ट" },
+    brand: { name: "ГеоВызов" },
     nav: {
       quests: "क्वेस्ट",
       myQuests: "मेरे",
@@ -1520,6 +1931,7 @@ export const translations = {
       byAuthor: "{author} द्वारा",
       defaultLocation: "स्थान",
       noLocation: "कोई स्थान नहीं",
+      bestTime: "रिकॉर्ड",
     },
     questStatus: {
       on_moderation: "समीक्षा में",
@@ -1563,6 +1975,7 @@ export const translations = {
         "वर्तमान चेकपॉइंट हाइलाइटेड है। पार किए गए पर निशान है।",
       checkpointLocked: "चेकपॉइंट {index} (बंद)",
       mapHeading: "मानचित्र पर चेकपॉइंट्स",
+      coverFullscreen: "फ़ोटो को पूर्ण स्क्रीन में खोलें",
       report: "रिपोर्ट करें",
       reportTitle: "इस क्वेस्ट की रिपोर्ट करें",
       reportDescription: "बताएं क्या समस्या है। मॉडरेटर आपकी रिपोर्ट देखेंगे।",
@@ -1684,9 +2097,11 @@ export const translations = {
       openList: "मेरे क्वेस्ट",
       tabCreated: "बनाए गए",
       tabFavorites: "पसंदीदा",
+      tabArchived: "संग्रह",
       emptyCreated:
         "आपने अभी कोई क्वेस्ट नहीं बनाया। चेकपॉइंट के साथ अपना मार्ग बनाएँ।",
       emptyFavorites: "खाली। फ़ीड या क्वेस्ट पेज से पसंदीदा जोड़ें।",
+      emptyArchived: "संग्रह में अभी कुछ नहीं है।",
       actionsLabel: "क्वेस्ट क्रियाएँ",
       archive: "संग्रह",
       restore: "फिर से प्रकाशित करें",
@@ -1908,13 +2323,15 @@ export const translations = {
       achievementLocked: "बंद",
       viewHistory: "रन इतिहास",
       viewHistoryHint: "आपकी सभी पूर्ण और छोड़ी गई क्वेस्ट",
+      viewRecent: "हाल ही में देखे गए",
+      viewRecentHint: "वे क्वेस्ट जो आपने हाल ही में खोले हैं",
       viewAchievements: "उपलब्धियाँ",
       viewAchievementsHint: "पुरस्कार और प्रगति",
       logout: "साइन आउट",
       logoutPending: "साइन आउट हो रहा है...",
     },
     auth: {
-      loginTitle: "क्वेस्ट में साइन इन",
+      loginTitle: "ГеоВызов में साइन इन",
       loginDescription: "जारी रखने के लिए ईमेल और पासवर्ड दर्ज करें",
       registerTitle: "साइन अप",
       registerDescription: "क्वेस्ट खेलने के लिए खाता बनाएँ",
@@ -1951,6 +2368,137 @@ export const translations = {
     },
     achievements: {
       progress: "{total} में से {unlocked} अनलॉक",
+    },
+    share: {
+      title: "साझा करें",
+      aria: "इस क्वेस्ट को साझा करें",
+      copied: "लिंक कॉपी हो गया",
+      failed: "लिंक कॉपी नहीं हो सका",
+    },
+    recent: {
+      title: "हाल ही में देखे गए",
+      description: "वे क्वेस्ट जो आपने हाल ही में खोले हैं।",
+      empty: "यहाँ आपके खोले गए क्वेस्ट दिखाई देंगे।",
+      clear: "साफ़ करें",
+      cleared: "देखे गए का इतिहास साफ़ हो गया",
+      confirmTitle: "क्या इतिहास साफ़ करें?",
+      confirmDescription:
+        "हाल ही में देखे गए क्वेस्ट इस डिवाइस से हटा दिए जाएँगे।",
+    },
+    guide: {
+      title: "गाइड",
+      description: "ऐप का इस्तेमाल कैसे करें — संक्षिप्त सुझाव।",
+      openLink: "गाइड",
+      welcome: {
+        title: "स्वागत है!",
+        body: "शहरी क्वेस्ट मैप पर कार्यों की एक श्रृंखला है। मार्ग चुनें, चेकपॉइंट पूरे करें और अकेले या टीम के साथ अंक कमाएँ।",
+      },
+      howTo: {
+        title: "कैसे इस्तेमाल करें",
+        items: {
+          start: {
+            title: "क्वेस्ट शुरू करें",
+            body: "फ़ीड खोलें, क्वेस्ट चुनें और «शुरू करें» दबाएँ।",
+          },
+          checkpoints: {
+            title: "चेकपॉइंट पूरे करें",
+            body: "मैप पर बिंदु तक पहुँचें, कोड शब्द लिखें या उत्तर चुनें।",
+          },
+          team: {
+            title: "टीम में खेलें",
+            body: "टीम बनाएँ या कोड से जुड़ें — कोई भी सदस्य उत्तर दे सकता है।",
+          },
+          scoring: {
+            title: "अंक कमाएँ",
+            body: "अंक व्यक्तिगत और टीम लीडरबोर्ड में जुड़ते हैं। तेज़ी पर बोनस।",
+          },
+        },
+      },
+      etiquette: {
+        title: "क्वेस्ट शिष्टाचार",
+        items: {
+          respect: "स्थानों का सम्मान करें — कूड़ा न छोड़ें।",
+          safety: "जवाब के लिए सुरक्षा से समझौता न करें।",
+          others: "अन्य लोगों और खिलाड़ियों को परेशान न करें।",
+          noDangerous: "खतरनाक या उकसाने वाले कार्य न बनाएँ।",
+        },
+      },
+      tips: {
+        title: "खिलाड़ी के लिए सुझाव",
+        items: {
+          route: "मार्ग की योजना पहले से बनाएँ।",
+          difficulty: "शुरू करने से पहले कठिनाई देखें।",
+          gear: "पानी और चार्जर साथ लें।",
+          team: "टीम के साथ हमेशा आसान।",
+        },
+      },
+      hints: {
+        title: "कार्य के टिप्स",
+        items: {
+          codeWord: {
+            title: "कोड शब्द",
+            body: "केस मायने नहीं रखता। जगह का संकेतित शब्द लिखें।",
+          },
+          multipleChoice: {
+            title: "विकल्प चुनें",
+            body: "सूची से एकमात्र सही चुनें।",
+          },
+          stuck: {
+            title: "अटक गए?",
+            body: "संकेत खोलें — बिना दंड।",
+          },
+        },
+      },
+      safety: {
+        title: "सुरक्षा",
+        items: {
+          closedZones: "बंद या निजी क्षेत्रों में न जाएँ।",
+          rules: "स्थानीय नियमों का पालन करें।",
+          noRisk: "जोखिम न लें — कोई भी कार्य इसके लायक नहीं।",
+        },
+      },
+      authoring: {
+        title: "क्वेस्ट बनाना",
+        items: {
+          create: {
+            title: "कैसे बनाएँ",
+            body: "शीर्षक, स्थान और कठिनाई भरें। मैप पर कम से कम 3 चेकपॉइंट जोड़ें।",
+          },
+          checkpointsQuality: {
+            title: "अच्छे चेकपॉइंट",
+            body: "कार्य छोटे और स्थान से जुड़े रखें। संकेत सहज लिखें।",
+          },
+          difficulty: {
+            title: "कठिनाई और अवधि",
+            body: "1–5 स्केल व्यक्तिगत है। प्रति चेकपॉइंट 10–15 मिनट और यात्रा गिनें।",
+          },
+          moderation: {
+            title: "मॉडरेशन और संग्रह",
+            body: "भेजी गई क्वेस्ट मॉडरेशन में जाती है। प्रकाशित को कभी भी संग्रहित किया जा सकता है।",
+          },
+        },
+      },
+    },
+    landing: {
+      tagline: "जियोलोकेशन के साथ शहरी क्वेस्ट",
+      description:
+        "असली सड़कों पर क्वेस्ट खेलें, अपनी बनाएँ और लीडरबोर्ड पर चढ़ें — अकेले या टीम के साथ।",
+      openWeb: "ऐप खोलें",
+      download: "डाउनलोड",
+      features: {
+        geo: {
+          title: "जियोलोकेशन",
+          body: "MapLibre + OpenStreetMap। मैप पर चेकपॉइंट, निर्देशांक से खेलना।",
+        },
+        team: {
+          title: "टीमें",
+          body: "6 तक लोग। कोई भी सदस्य चेकपॉइंट का जवाब दे सकता है।",
+        },
+        create: {
+          title: "अपनी क्वेस्ट",
+          body: "चेकपॉइंट के साथ मार्ग बनाएँ और मॉडरेशन के लिए भेजें।",
+        },
+      },
     },
     language: { ru: "RU", en: "EN", fr: "FR", hi: "HI" },
   },

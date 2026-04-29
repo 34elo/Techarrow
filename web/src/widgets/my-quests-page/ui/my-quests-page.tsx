@@ -3,7 +3,7 @@
 import { useCallback, useMemo } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Heart, Plus, Wand2 } from "lucide-react";
+import { Archive, Heart, Plus, Wand2 } from "lucide-react";
 
 import { useQuests } from "@/features/quests";
 import { QuestCardList } from "@/features/quests/ui/quest-card-list";
@@ -13,7 +13,7 @@ import { InfiniteListFooter } from "@/shared/ui/infinite-list-footer";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/ui/tabs";
 
-const TABS = ["created", "favorites"] as const;
+const TABS = ["created", "favorites", "archived"] as const;
 type Tab = (typeof TABS)[number];
 
 function isTab(value: string | null): value is Tab {
@@ -64,6 +64,10 @@ export function MyQuestsPage() {
             <Heart className="size-3.5" aria-hidden />
             {t("myQuests.tabFavorites")}
           </TabsTrigger>
+          <TabsTrigger value="archived">
+            <Archive className="size-3.5" aria-hidden />
+            {t("myQuests.tabArchived")}
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="created">
@@ -86,22 +90,38 @@ export function MyQuestsPage() {
             emptyText={t("myQuests.emptyFavorites")}
           />
         </TabsContent>
+        <TabsContent value="archived">
+          <QuestSection
+            scope="archived"
+            emptyText={t("myQuests.emptyArchived")}
+          />
+        </TabsContent>
       </Tabs>
     </div>
   );
 }
 
 type QuestSectionProps = {
-  scope: "created" | "favorites";
+  scope: "created" | "favorites" | "archived";
   emptyText: string;
   emptyAction?: React.ReactNode;
 };
 
 function QuestSection({ scope, emptyText, emptyAction }: QuestSectionProps) {
   const { t } = useTranslations();
-  const query = useQuests({ scope: scope === "created" ? "my" : "favorites" });
+  const query = useQuests({
+    scope: scope === "favorites" ? "favorites" : "my",
+  });
 
-  const items = useMemo(() => query.items, [query.items]);
+  const items = useMemo(() => {
+    if (scope === "created") {
+      return query.items.filter((quest) => quest.status !== "archived");
+    }
+    if (scope === "archived") {
+      return query.items.filter((quest) => quest.status === "archived");
+    }
+    return query.items;
+  }, [query.items, scope]);
 
   if (query.isLoading) {
     return (
@@ -134,8 +154,8 @@ function QuestSection({ scope, emptyText, emptyAction }: QuestSectionProps) {
     <div className="space-y-4">
       <QuestCardList
         quests={items}
-        showStatus={scope === "created"}
-        showOwnerActions={scope === "created"}
+        showStatus={scope !== "favorites"}
+        showOwnerActions={scope !== "favorites"}
       />
       <InfiniteListFooter
         hasNextPage={Boolean(query.hasNextPage)}

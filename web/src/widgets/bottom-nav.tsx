@@ -23,10 +23,10 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    href: "/",
+    href: "/quests",
     labelKey: "nav.quests",
     icon: Compass,
-    match: (pathname) => pathname === "/",
+    match: (pathname) => pathname === "/quests",
   },
   {
     href: "/quests/my",

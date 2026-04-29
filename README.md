@@ -1,143 +1,79 @@
-# Квесты — Frontend
+# ГеоВызов
 
-Платформа городских квестов с геолокацией: пользователи проходят и создают квесты с чекпоинтами, играют в одиночку и командами, соревнуются в рейтинге; модераторы проверяют контент и обрабатывают жалобы. Этот репозиторий содержит **только frontend-часть** — два независимых Next.js-приложения с общим backend API.
+Платформа городских квестов с геолокацией. Игроки проходят чекпоинты по карте соло или командой, набирают очки в общем рейтинге и создают свои маршруты. Модераторы проверяют контент через отдельную панель.
 
----
+> Этот репозиторий — **только frontend**. Backend поднимается отдельно; контракт API — в [`openapi.json`](./openapi.json).
 
-## Состав репозитория
+## Структура
 
-| Папка | Что это | Порт по умолчанию | Документация |
-|-------|---------|-------------------|--------------|
-| [`web/`](./web) | Пользовательская панель: каталог, прохождение, создание квестов, команды, рейтинг, профиль | `3000` | [web/README.md](./web/README.md) · [docs/architecture.md](./web/docs/architecture.md) · [docs/environment-and-api.md](./web/docs/environment-and-api.md) |
-| [`admin/`](./admin) | Панель модерации: очередь заявок, одобрение/отклонение, жалобы | `3001` | [admin/README.md](./admin/README.md) · [docs/architecture.md](./admin/docs/architecture.md) · [docs/environment-and-api.md](./admin/docs/environment-and-api.md) |
-| `docker-compose.yml` | Production-оркестрация двух приложений | — | — |
-| `docker-compose.dev.yml` | Dev-режим с hot-reload и volume-монтированием исходников | — | — |
-| `openapi.json` | Контракт REST API | — | — |
+| Папка | Что это | Порт |
+|---|---|---|
+| [`web/`](./web) | Пользовательская панель | `3000` |
+| [`admin/`](./admin) | Панель модерации | `3001` |
+| `docker-compose.yml` | Production-оркестрация | — |
+| `docker-compose.dev.yml` | Dev-режим с hot-reload | — |
+| `openapi.json` | Контракт REST API | — |
 
-Каждое приложение полностью самостоятельно (своя сборка, свой `package.json`), но обращается к одному и тому же backend.
-
----
-
-## Главное про продукт
-
-- **Доменная модель:** пользователи (`user`/`moderator`), команды, квесты со статусной моделью `on_moderation → published / rejected → archived`, чекпоинты с задачами и геокоординатами, сессии прохождения (соло и командные) с прогрессом, рейтинг и достижения.
-- **Геолокация:** карты на MapLibre GL поверх растровых тайлов OpenStreetMap; запрос координат пользователя через Browser Geolocation API.
-- **Команды:** создание команды с инвайт-кодом (12 символов), присоединение по коду или QR, кик участников, командный рейтинг.
-- **Командные квесты:** до 6 человек проходят квест вместе. Старт по системе готовности (`waiting_for_team → starting → in_progress → completed`), любой участник отвечает на любой чекпоинт, очки начисляются каждому. См. `team-quests.md` в корне и [архитектуру web](./web/docs/architecture.md).
-- **Свои квесты:** на странице «Мои квесты» автор может архивировать/восстановить или удалить квест прямо из списка.
-- **Достижения:** страница `/profile/achievements` показывает каталог + полученные пользователем (заблокированные пометкой).
-- **Локализация:** четыре языка — `ru` (по умолчанию), `en`, `fr`, `hi`.
-- **Безопасность ролей:** web и admin — отдельные SPA с независимыми ключами `localStorage`. Модератор не может пользоваться пользовательской панелью, обычный пользователь не может попасть в админку. Подробнее — [ниже](#изоляция-ролей-между-панелями).
-
----
+Каждое приложение — самостоятельный Next.js-пакет (свои `package.json`, lockfile, Dockerfile), оба ходят в один backend.
 
 ## Стек
 
-| Область         | web                              | admin                             |
-|-----------------|----------------------------------|-----------------------------------|
-| UI / роутинг    | Next.js 16 (App Router), React 19 | Next.js 16 (App Router), React 19 |
-| Состояние       | TanStack Query, Zustand          | TanStack Query, Zustand           |
-| Стили           | Tailwind 4, shadcn/ui (Radix)    | Tailwind 4, shadcn/ui (Radix)     |
-| Сеть            | Axios, refresh-токены            | Axios, refresh-токены             |
-| Карты           | MapLibre GL + OSM                | —                                 |
-| Формы           | react-hook-form + zod            | react-hook-form + zod             |
-| Уведомления     | sonner                           | sonner                            |
-| Язык            | TypeScript                       | TypeScript                        |
+Next.js 16 (App Router) · React 19 · TypeScript · TanStack Query · Zustand · Tailwind 4 · shadcn/ui · Axios · MapLibre GL (только web)
 
-Архитектура обеих панелей построена по [Feature-Sliced Design](https://feature-sliced.design/) (`app → widgets → features → entities → shared`).
+Архитектура обеих панелей — [Feature-Sliced Design](https://feature-sliced.design/): `app → widgets → features → entities → shared`. Локализация — `ru` (default), `en`, `fr`, `hi`.
 
----
+## Возможности
 
-## Быстрый старт
+- **Лендинг** на `/` с описанием и кнопками входа в приложение / скачивания.
+- **Каталог квестов** на `/quests` с фильтрами и картой.
+- **Прохождение** соло и командой (до 6 игроков): чекпоинты с кодовым словом или вариантами ответа, подсказки, таймер старта команды.
+- **Создание квестов** с маркерами на карте, обложкой и валидацией (≥3 чекпоинта).
+- **Команды** с инвайт-кодом и QR, кик участников, командный рейтинг.
+- **Достижения и история** прохождений в профиле.
+- **Гид** на `/guide` (как играть, этикет, советы, безопасность) — доступен с плавающей кнопки `?` на любом экране.
+- **Изоляция ролей**: web и admin — отдельные SPA с независимыми ключами `localStorage`; токены не мигрируют между панелями. Авторитетный контроль ролей — на backend.
 
-Перед запуском frontend поднимите backend и убедитесь, что он доступен по адресу, который вы укажете в `NEXT_PUBLIC_API_URL` (по умолчанию — `http://localhost:8000`). Контракт API сверьте с `openapi.json`.
+## Запуск
 
-### Через Docker Compose (рекомендуется для жюри)
+Нужны **Docker** или **Node.js 20+ / pnpm 10** (`corepack enable && corepack prepare pnpm@10 --activate`).
 
-#### Production-режим
+### Docker Compose
 
 ```bash
-NEXT_PUBLIC_API_URL=http://localhost:8000 docker compose build
+cp .env.example .env             # один раз; правьте под себя
+docker compose build
 docker compose up -d
 ```
 
-- Пользовательская панель: <http://localhost:3000>
-- Админ-панель: <http://localhost:3001>
+- Web → <http://localhost:3000>
+- Admin → <http://localhost:3001>
 
-Остановить и снять контейнеры:
+Hot-reload в контейнере:
 
 ```bash
-docker compose down
+docker compose -f docker-compose.dev.yml up --build
 ```
 
-#### Dev-режим (hot reload)
+`.env` в корне — единственный источник переменных (`NEXT_PUBLIC_API_URL`, `WEB_PORT`, `ADMIN_PORT`). `NEXT_PUBLIC_*` запекается в бандл на этапе сборки — после правки делайте `docker compose build`.
+
+### Локально
 
 ```bash
-NEXT_PUBLIC_API_URL=http://localhost:8000 docker compose -f docker-compose.dev.yml up --build
-```
-
-Те же порты. Исходники смонтированы внутрь контейнеров; для систем без inotify включён polling (`WATCHPACK_POLLING`, `CHOKIDAR_USEPOLLING`).
-
-```bash
-docker compose -f docker-compose.dev.yml down
-```
-
-> Переменные `NEXT_PUBLIC_*` запекаются в клиентский бандл на этапе сборки. Если меняете `NEXT_PUBLIC_API_URL`, **пересобирайте образы**, а не только перезапускайте.
-
-### Без Docker (локально)
-
-В каждой папке отдельно:
-
-```bash
-cd web      # или admin
+cd web        # или admin
 cp .env.example .env
 pnpm install
 pnpm dev
 ```
 
-Нужны Node.js 20+ и pnpm 10 (`corepack enable && corepack prepare pnpm@10 --activate`).
+## Документация
 
----
-
-## Изоляция ролей между панелями
-
-Backend выписывает токены для **любой** валидной учётной записи — поэтому ролевой контроль прокидан на клиенте обеих панелей, на нескольких уровнях.
-
-| Сценарий | Что происходит |
-|----------|----------------|
-| Модератор пытается войти в `/web` | `useLogin` ловит роль `moderator`, отзывает только что выданный refresh-токен (`POST /api/auth/logout`), бросает `ModeratorNotAllowedError` — страница редиректит на `/access_denied`. |
-| Обычный пользователь пытается войти в `/admin` | `useLogin` бросает `NotModeratorError`, токен отзывается, редирект на `/access_denied`. |
-| Stale-сессия с «чужой» ролью в `localStorage` | При гидратации persist-стор отбрасывает не подходящего пользователя; `AuthGuard` дополнительно вызывает `clearAuth()` и кидает на `/access_denied`. |
-| Перенос токена между панелями | Невозможен: ключи `localStorage` разные — `web_refresh_token`/`auth` против `admin_refresh_token`/`admin-auth`. |
-
-Дополнительные слои защиты: defensive-проверки в `auth-store.setAuth/setUser` обеих панелей, единая страница 403 — `/access_denied` с возвратом ко входу.
-
-> **Важно:** клиентские проверки — это удобство для пользователя (понятная ошибка вместо «доступ запрещён»). Авторитетный контроль ролей выполняется на **backend**: каждый защищённый эндпоинт обязан проверять роль из токена.
-
----
-
-## Куда смотреть в коде
-
-- **HTTP-клиент и refresh:** `web/src/shared/api/http-client.ts`, `admin/src/shared/api/http-client.ts`.
-- **Стор авторизации и persist:** `web/src/shared/store/auth-store.ts`, `admin/src/shared/store/auth-store.ts`.
-- **Гарды роутов:** `web/src/features/auth/ui/auth-guard.tsx`, `admin/src/features/auth/ui/auth-guard.tsx`, `web/src/features/auth/ui/guest-guard.tsx`.
-- **Карта и геолокация:** `web/src/shared/ui/map/maplibre-map.tsx`, `web/src/shared/lib/geolocation/use-geolocation.ts`.
-- **Сервисы API:** `*/features/*/api/*-service.ts` в каждой панели — там полные списки путей (см. также `docs/environment-and-api.md` в каждой панели).
-- **Локализация:** `*/src/shared/i18n/translations.ts`.
-
----
-
-## Кодовый стиль
-
-В обоих приложениях один и тот же Prettier-конфиг (`.prettierrc.json`): семиколоны, двойные кавычки, trailing comma `all`, ширина 80, EOL `lf`. ESLint конфигурируется через `eslint.config.mjs` с базой `eslint-config-next`. Скрипты `pnpm format` / `pnpm format:check` доступны в каждом из пакетов.
-
-Архитектура обеих панелей следует [Feature-Sliced Design](https://feature-sliced.design/) — `app → widgets → features → entities → shared`. Импорты используют алиас `@/*` → `src/*`.
-
----
-
-## Документация по разделам
-
-- Пользовательская панель: [`web/README.md`](./web/README.md) → [архитектура](./web/docs/architecture.md), [окружение и API](./web/docs/environment-and-api.md).
-- Админ-панель: [`admin/README.md`](./admin/README.md) → [архитектура](./admin/docs/architecture.md), [окружение и API](./admin/docs/environment-and-api.md).
-- Контракт API: [`openapi.json`](./openapi.json).
-- Командные квесты — деталь backend-флоу: [`team-quests.md`](./team-quests.md).
+| Раздел | Файл |
+|---|---|
+| Пользовательская панель | [`web/README.md`](./web/README.md) |
+| Архитектура web (FSD, маршруты, авторизация, командные квесты, карты) | [`web/docs/architecture.md`](./web/docs/architecture.md) |
+| HTTP-клиент и пути API (web) | [`web/docs/environment-and-api.md`](./web/docs/environment-and-api.md) |
+| Панель модерации | [`admin/README.md`](./admin/README.md) |
+| Архитектура admin | [`admin/docs/architecture.md`](./admin/docs/architecture.md) |
+| HTTP-клиент и пути API (admin) | [`admin/docs/environment-and-api.md`](./admin/docs/environment-and-api.md) |
+| Командные квесты — backend-флоу | [`team-quests.md`](./team-quests.md) |
+| Контракт REST API | [`openapi.json`](./openapi.json) |

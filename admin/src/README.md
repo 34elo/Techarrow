@@ -8,4 +8,4 @@
 | Entities | `entities` | Модели и типы домена |
 | Shared | `shared` | API, конфиг, UI-kit, сторы, React Query, i18n |
 
-Подробнее: [docs/architecture.md](../docs/architecture.md), [README в корне](../README.md).
+Подробнее: [docs/architecture.md](../docs/architecture.md), [README в корне](../../README.md).

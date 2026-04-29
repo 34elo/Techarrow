@@ -70,18 +70,24 @@ function readPersistedLocale(): Locale {
 }
 
 export function I18nProvider({ children }: I18nProviderProps) {
-  const [locale, setLocale] = useState<Locale>(readPersistedLocale);
+  // SSR and first client render must agree, so start from defaultLocale and
+  // swap to the persisted value after mount.
+  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("locale", locale);
-    }
-  }, [locale]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setLocaleState(readPersistedLocale());
+  }, []);
 
   const value = useMemo<I18nContextValue>(
     () => ({
       locale,
-      setLocale,
+      setLocale: (next) => {
+        setLocaleState(next);
+        if (typeof window !== "undefined") {
+          window.localStorage.setItem("locale", next);
+        }
+      },
       t: (key, params) => {
         const count =
           typeof params?.count === "number" ? params.count : undefined;

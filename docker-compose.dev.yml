@@ -1,11 +1,15 @@
+name: geo-vyzov-dev
+
 services:
   web:
     build:
       context: ./web
       dockerfile: Dockerfile.dev
+    env_file:
+      - .env
     environment:
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
       WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
     ports:
       - "${WEB_PORT:-3000}:3000"
     volumes:
@@ -16,9 +20,11 @@ services:
     build:
       context: ./admin
       dockerfile: Dockerfile.dev
+    env_file:
+      - .env
     environment:
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
       WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
     ports:
       - "${ADMIN_PORT:-3001}:3000"
     volumes:

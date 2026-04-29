@@ -120,7 +120,7 @@ export function QuestCreatePage() {
     <div className="space-y-6">
       <header className="flex flex-wrap items-center gap-3">
         <Button variant="ghost" size="sm" asChild>
-          <Link href="/">
+          <Link href="/quests">
             <ArrowLeft />
             {t("common.back")}
           </Link>

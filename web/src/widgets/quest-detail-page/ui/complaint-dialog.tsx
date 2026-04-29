@@ -60,9 +60,15 @@ export function ComplaintDialog({ questId }: ComplaintDialogProps) {
         if (!mutation.isPending) setOpen(value);
       }}
     >
-      <Button type="button" variant="outline" onClick={() => setOpen(true)}>
+      <Button
+        type="button"
+        variant="outline"
+        size="icon"
+        onClick={() => setOpen(true)}
+        aria-label={t("questDetail.report")}
+        title={t("questDetail.report")}
+      >
         <Flag />
-        {t("questDetail.report")}
       </Button>
       <DialogContent>
         <DialogHeader>

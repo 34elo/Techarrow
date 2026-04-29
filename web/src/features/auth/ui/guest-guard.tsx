@@ -29,7 +29,7 @@ export function GuestGuard({ children }: GuestGuardProps) {
   useEffect(() => {
     if (!hasHydrated) return;
     if (isAuthenticated) {
-      router.replace("/");
+      router.replace("/quests");
     }
   }, [hasHydrated, isAuthenticated, router]);
 

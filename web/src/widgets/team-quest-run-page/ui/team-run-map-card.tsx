@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { Crosshair } from "lucide-react";
 
 import {
   getDefaultMapCenter,
@@ -10,6 +11,7 @@ import {
 import type { TeamQuestRunProgress } from "@/entities/team-quest-run";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { useGeolocation } from "@/shared/lib/geolocation";
+import { Button } from "@/shared/ui/button";
 import { Card, CardContent } from "@/shared/ui/card";
 import { MapView, type MapMarkerData } from "@/shared/ui/map";
 
@@ -28,7 +30,11 @@ function escapeHtml(value: string): string {
 
 export function TeamRunMapCard({ run, quest }: TeamRunMapCardProps) {
   const { t } = useTranslations();
-  const { coords: userCoords } = useGeolocation({ watch: true, auto: true });
+  const {
+    coords: userCoords,
+    request: requestLocation,
+    isLoading: isLocating,
+  } = useGeolocation({ watch: true, auto: false });
 
   const markers = useMemo<MapMarkerData[]>(
     () =>
@@ -60,9 +66,25 @@ export function TeamRunMapCard({ run, quest }: TeamRunMapCardProps) {
   return (
     <Card className="flex h-full flex-col border-0 shadow-md">
       <CardContent className="flex flex-1 flex-col gap-3 p-4">
-        <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-          {t("teamRun.mapHeading")}
-        </p>
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            {t("teamRun.mapHeading")}
+          </p>
+          {!userCoords ? (
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => requestLocation()}
+              disabled={isLocating}
+            >
+              <Crosshair />
+              {isLocating
+                ? t("geolocation.locating")
+                : t("geolocation.locateMe")}
+            </Button>
+          ) : null}
+        </div>
         <div className="min-h-72 flex-1 overflow-hidden rounded-2xl">
           <MapView
             center={center}

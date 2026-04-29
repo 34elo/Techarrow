@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2, Clock3, MapPin } from "lucide-react";
+import { CheckCircle2, Clock3, MapPin, Trophy } from "lucide-react";
 
 import {
+  formatBestCompletion,
   getDifficultyLabel,
   getQuestCoverImageUrl,
   getQuestStatusLabel,
@@ -14,6 +15,7 @@ import {
 } from "@/entities/quest";
 import { FavoriteButton } from "@/features/quest-favorites";
 import { useCompletedQuestIds } from "@/features/quest-run";
+import { ShareQuestButton } from "./share-quest-button";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { cn } from "@/shared/lib/classnames";
 import { truncateText } from "@/shared/lib/text";
@@ -73,6 +75,12 @@ export function QuestCard({
           />
           <div className="absolute right-2 top-2 flex items-center gap-1.5">
             {actions}
+            <ShareQuestButton
+              questId={quest.id}
+              questTitle={quest.title}
+              variant="card"
+              className="bg-card/80"
+            />
             <FavoriteButton questId={quest.id} className="bg-card/80" />
           </div>
           {showStatus || isPassed ? (
@@ -112,6 +120,15 @@ export function QuestCard({
               <Clock3 className="size-3.5" aria-hidden />
               {t("quest.durationLabel", { count: quest.duration_minutes })}
             </span>
+            {quest.best_completion_seconds != null ? (
+              <span
+                className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400"
+                title={t("quest.bestTime")}
+              >
+                <Trophy className="size-3.5" aria-hidden />
+                {formatBestCompletion(quest.best_completion_seconds)}
+              </span>
+            ) : null}
             <span className="text-muted-foreground/80">
               {t("quest.byAuthor", { author: quest.creator.username })}
             </span>

@@ -1,55 +1,54 @@
-# Архитектура
+# Архитектура (admin)
 
-Ориентация на [Feature-Sliced Design](https://feature-sliced.design/): зависимости сверху вниз — от `app` к `shared`. Любой нижний слой не знает о вышестоящих.
+[Feature-Sliced Design](https://feature-sliced.design/): зависимости сверху вниз, нижний слой не знает о вышестоящих.
 
 ## Слои
 
-| Слой | Каталог | Содержимое |
-|------|---------|------------|
-| App | `src/app` | Роутинг Next.js, `layout`, `providers`, `globals.css`, общие `error.tsx`/`not-found.tsx`/`access_denied/page.tsx` |
-| Widgets | `src/widgets` | `panel-layout`, `panel-header`, `quest-detail` (карточки обложки, общей информации и чекпоинтов) |
+| Слой | Каталог | Что внутри |
+|---|---|---|
+| App | `src/app` | Роутинг, корневой `layout`, `providers`, `globals.css`, общие `error.tsx` / `not-found.tsx` / `access_denied/page.tsx` |
+| Widgets | `src/widgets` | `panel-layout`, `panel-header`, `quest-detail` (обложка, общая инфо, чекпоинты) |
 | Features | `src/features` | `auth` (логин и гард), `nav-tabs`, `quests` (очередь модерации, карточка), `reports` (жалобы), `reject` (диалог отказа с причиной) |
-| Entities | `src/entities` | Доменные типы и хелперы: `user`, `quest`, `report` |
-| Shared | `src/shared` | Axios-клиент, конфиг env, UI-kit на shadcn/ui + Radix, Zustand-стор авторизации, TanStack Query helpers, i18n, `refresh-token-storage` |
+| Entities | `src/entities` | `user`, `quest`, `report` |
+| Shared | `src/shared` | Axios-клиент, env, UI-kit (shadcn/ui + Radix), Zustand-стор, TanStack Query helpers, i18n, `refresh-token-storage` |
 
-Отдельных папок `processes` / каноничного слоя `pages` нет: страницы лежат в `src/app`.
+Алиас импортов: `@/*` → `src/*`.
 
 ## Маршруты
 
-App Router использует две группы:
-
-| Группа | Гард | Перечень роутов |
-|--------|------|-----------------|
-| `(auth)` | `GuestGuard` (если уже залогинен — на `/`) | `/login` |
-| `(dashboard)` | `AuthGuard` (требует роль `moderator`; иначе `/access_denied`) | `/`, `/quests`, `/quests/[id]`, `/reports` |
-| Корневые | без гарда | `/access_denied`, `/error.tsx`, `/not-found.tsx` |
-
-`/access_denied` — единая страница 403 для пользователей, попавших не в ту панель.
-
-## Импорты
-
-Алиас `@/*` → `src/*` (`tsconfig.json`).
+| Группа | Гард | Роуты |
+|---|---|---|
+| `(auth)` | `GuestGuard` (если залогинен — на `/`) | `/login` |
+| `(dashboard)` | `AuthGuard` (роль `moderator`) | `/`, `/quests`, `/quests/[id]`, `/reports` |
+| Корневые | — | `/access_denied`, `/error.tsx`, `/not-found.tsx` |
 
 ## Данные
 
-- **Сервер:** TanStack Query, хуки рядом с фичами; запросы через `shared/api/http-client`. Ключи кэша описаны в `shared/lib/react-query/query-keys.ts`. Бесконечные списки квестов и жалоб используют `fetch-all-next-pages` и компонент `infinite-list-footer`.
-- **Авторизация:** `shared/store/auth-store.ts` (Zustand + persist), refresh-токен — отдельным ключом в `shared/lib/refresh-token-storage.ts`, настройка интерцепторов — в `src/app/providers.tsx`.
-- **Ролевой доступ:** только роль `"moderator"` допускается в этой панели. Защита трёхслойная — мутация `useLogin`, defensive-guard в `setAuth`/`setUser` стора, проверка при гидратации persist и `AuthGuard`.
+- **Сервер:** TanStack Query, хуки рядом с фичами; запросы через `shared/api/http-client`. Ключи кэша — `shared/lib/react-query/query-keys.ts`. Бесконечные списки используют `fetch-all-next-pages` и `infinite-list-footer`.
+- **Авторизация:** `shared/store/auth-store.ts` (Zustand + persist), refresh-токен — `shared/lib/refresh-token-storage.ts`. Интерцепторы — `src/app/providers.tsx`.
 
 ## Авторизация и роли
 
-1. На `useLogin` клиент проверяет `data.user.role === "moderator"`. Если роль другая — best-effort `POST /api/auth/logout` и `throw NotModeratorError`. Страница логина ловит этот класс и редиректит на `/access_denied`.
-2. `auth-store.setAuth/setUser/merge` дополнительно отбрасывают любого не-модератора: даже если стор позовут в обход хука или в `localStorage` останется stale-сессия с другой ролью, состояние сбросится.
-3. `AuthGuard` (см. `features/auth/ui/auth-guard.tsx`) при гидратации сверяет роль и при несовпадении вызывает `clearAuth()` и `router.replace("/access_denied")`.
-4. Хранилища намеренно разнесены с web-панелью: ключи `localStorage` — `"admin-auth"` для persist-стора и `"admin_refresh_token"` для refresh-токена. У web-панели — `"auth"` и `"web_refresh_token"`.
+В этой панели допускается только роль `"moderator"`. Защита трёхслойная:
+
+1. `useLogin` ловит чужую роль, делает best-effort `POST /api/auth/logout` и бросает `NotModeratorError`. Страница логина редиректит на `/access_denied`.
+2. `auth-store.setAuth/setUser` отбрасывает не-модератора.
+3. `AuthGuard` при гидратации сверяет роль и при несовпадении вызывает `clearAuth()` + `router.replace("/access_denied")`.
+
+Ключи `localStorage` намеренно отличаются от web-панели: `"admin-auth"` (persist-стор) и `"admin_refresh_token"` (refresh).
+
+## UI
+
+- Базовая раскладка — `widgets/panel-layout.tsx` + `widgets/panel-header.tsx`.
+- Карточка квеста на `/quests/[id]` рендерится в две колонки на `lg+` (общая информация слева, чекпоинты справа), стекается на меньших экранах. Длинные ответы и описания корректно ломаются (`break-words` / `break-all` для mono) — см. `widgets/quest-detail/ui/quest-detail-checkpoints-card.tsx`.
 
 ## Локализация
 
-`shared/i18n/translations.ts` хранит словари для `ru` (default), `en`, `fr`, `hi`. Провайдер — `shared/i18n/i18n-provider.tsx` (`t(key, params?)` с подстановкой параметров и плюрализацией для русского). Переключатель — `language-switcher.tsx`.
+`shared/i18n/translations.ts` — словари для `ru` (default), `en`, `fr`, `hi`. Провайдер — `shared/i18n/i18n-provider.tsx` (`t(key, params?)` с интерполяцией и плюрализацией для русского).
 
-## UI и адаптивность
+## Где смотреть в коде
 
-- Базовая раскладка панели — `widgets/panel-layout.tsx` + `widgets/panel-header.tsx`.
-- Карточка квеста на `/quests/[id]` рендерится в две колонки на `lg+` (общая информация слева, чекпоинты справа), стекается на меньших экранах. Длинные ответы и описания чекпоинтов корректно ломаются (`break-words` / `break-all` для mono-полей) — см. `widgets/quest-detail/ui/quest-detail-checkpoints-card.tsx`.
-
-Детали HTTP-клиента и список путей API — [environment-and-api.md](./environment-and-api.md).
+- HTTP-клиент: `shared/api/http-client.ts`
+- Стор авторизации: `shared/store/auth-store.ts`
+- Гарды: `features/auth/ui/auth-guard.tsx`
+- Сервисы API: `features/*/api/*-service.ts` (полный список — в [environment-and-api.md](./environment-and-api.md))

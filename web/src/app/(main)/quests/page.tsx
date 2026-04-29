@@ -1,5 +1,5 @@
 import { QuestFeedPage } from "@/widgets/quest-feed";
 
-export default function HomePage() {
+export default function QuestsRoute() {
   return <QuestFeedPage />;
 }

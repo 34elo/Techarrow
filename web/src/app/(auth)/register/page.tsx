@@ -49,7 +49,7 @@ export default function RegisterPage() {
       { email, username, password, birthdate },
       {
         onSuccess: () => {
-          router.replace("/");
+          router.replace("/quests");
         },
         onError: (error) => {
           toast.error(t("auth.registerError"), {

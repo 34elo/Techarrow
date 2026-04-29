@@ -22,6 +22,8 @@ import { useMyTeam } from "@/features/teams";
 import { useTranslations } from "@/shared/i18n/i18n-provider";
 import { Button } from "@/shared/ui/button";
 
+import { ShareQuestButton } from "@/features/quests/ui/share-quest-button";
+
 import { ComplaintDialog } from "./complaint-dialog";
 import { ExportQuestDialog } from "./export-quest-dialog";
 
@@ -156,6 +158,7 @@ export function QuestDetailActions({
           {startPending ? t("startQuest.starting") : t("startQuest.start")}
         </Button>
       )}
+      <FavoriteButton questId={questId} />
       <Button
         variant="outline"
         size="icon"
@@ -166,7 +169,7 @@ export function QuestDetailActions({
       >
         <Download />
       </Button>
-      <FavoriteButton questId={questId} variant="text" />
+      <ShareQuestButton questId={questId} questTitle={questTitle} />
       {!isOwn ? <ComplaintDialog questId={questId} /> : null}
 
       <StartQuestDialog

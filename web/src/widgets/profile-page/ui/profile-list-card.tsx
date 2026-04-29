@@ -31,7 +31,7 @@ type ProfileListCardProps = {
 
 export function ProfileListCard({ items }: ProfileListCardProps) {
   return (
-    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+    <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
       {items.map((item) => (
         <ProfileTile key={item.label} item={item} />
       ))}
@@ -105,7 +105,7 @@ function ProfileTile({ item }: { item: ProfileListItem }) {
       type="button"
       onClick={item.onClick}
       disabled={item.disabled}
-      className="block w-full rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-60"
+      className="block w-full cursor-pointer rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-60"
     >
       {tile}
     </button>

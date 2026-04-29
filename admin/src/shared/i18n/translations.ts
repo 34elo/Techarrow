@@ -15,7 +15,7 @@ export const translations = {
       loadAll: "Раскрыть всё",
       loadError: "Не удалось загрузить данные",
     },
-    brand: { name: "Квесты" },
+    brand: { name: "ГеоВызов" },
     home: {
       title: "Панель управления",
       description: "Здесь будет общий обзор административной панели.",
@@ -163,7 +163,7 @@ export const translations = {
       loadAll: "Load all",
       loadError: "Failed to load data",
     },
-    brand: { name: "Quests" },
+    brand: { name: "ГеоВызов" },
     home: {
       title: "Dashboard",
       description: "Admin dashboard overview will appear here.",
@@ -310,7 +310,7 @@ export const translations = {
       loadAll: "Tout afficher",
       loadError: "Échec du chargement des données",
     },
-    brand: { name: "Quêtes" },
+    brand: { name: "ГеоВызов" },
     home: {
       title: "Tableau de bord",
       description: "L'aperçu du panneau d'administration s'affichera ici.",
@@ -460,7 +460,7 @@ export const translations = {
       loadAll: "सभी दिखाएँ",
       loadError: "डेटा लोड नहीं हो सका",
     },
-    brand: { name: "क्वेस्ट" },
+    brand: { name: "ГеоВызов" },
     home: {
       title: "डैशबोर्ड",
       description: "एडमिन डैशबोर्ड का अवलोकन यहाँ दिखेगा।",

@@ -40,7 +40,7 @@ export function MyQuestActions({ quest }: MyQuestActionsProps) {
   const deleteQuest = useDeleteMyQuest();
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const canArchive = quest.status === "published";
+  const canArchive = quest.status !== "archived";
   const canRestore = quest.status === "archived";
 
   const handleArchive = () => {

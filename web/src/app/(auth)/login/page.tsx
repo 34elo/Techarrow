@@ -33,7 +33,7 @@ export default function LoginPage() {
       { email, password },
       {
         onSuccess: () => {
-          router.replace("/");
+          router.replace("/quests");
         },
         onError: (error) => {
           if (error instanceof ModeratorNotAllowedError) {
